@@ -1,0 +1,42 @@
+body{
+    height: 100%;
+    margin: 0;
+    font-family: helvetica;
+}
+
+button{
+    padding: 1.5vh 4vh 1.5vh 4vh;
+    font-size: 1.8vh;
+    color: #183693;
+    background-color: transparent;
+    border: 1.5px solid #183693;
+    outline: none;
+    transition: 0.3s;
+}
+
+button:hover{
+    color: #ffffff;
+    background-color: #183693;
+    cursor: pointer;
+}
+
+a.button{
+    padding: 1.5vh 4vh 1.5vh 4vh;
+    font-size: 1.8vh;
+    color: #183693;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1.5px solid #183693;
+    outline: none;
+    transition: 0.3s;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+a.button:hover{
+    color: #ffffff;
+    background-color: #183693;
+    cursor: pointer;
+}

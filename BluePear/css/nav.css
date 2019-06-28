@@ -1,0 +1,27 @@
+@font-face{
+    font-family: Nokia;
+    src: url('../fonts/NokiaKokia.ttf');
+}
+
+nav{
+    /*background-image: linear-gradient(175deg, #ffffff, #f0f0f0);*/
+    color: #183693;
+    padding: 3vh 5vh 3vh 5vh;
+    /*box-shadow: 0vh 1vh 1.5vh rgb(0,0,0, 0.24);*/
+}
+
+#logo{
+    margin: 0vh;
+    font-family: Nokia;
+    font-weight: 100;
+    font-size: 3vh;
+    float: left;
+}
+
+#sublogo{
+    margin: 0.5vh 0vh 0vh 16vh;
+    color: #c0c0c0;
+    font-family: helvetica;
+    font-weight: 100;
+    font-size: 2.5vh;
+}
