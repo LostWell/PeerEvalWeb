@@ -3,6 +3,11 @@
     src: url('fonts/NokiaKokia.ttf');
 }
 
+@font-face{
+    font-family: NokiaPureText-Light;
+    src: url('fonts/NokiaPureText-Light.ttf');
+}
+
 body{
     background-image: url(images/Path%208.png);
     background-position: bottom;
@@ -23,10 +28,10 @@ body{
 
 #sublogo{
     display: inline-block;
-    margin: 1.4vh 0vh 0vh 1vh;
-    color: #909090;
-    font-family: helvetica;
-    font-weight: 100;
+    margin: 0.8vh 0vh 0vh 1.5vh;
+    color: #b0b0b0;
+    font-family: NokiaPureText-Light;
+    font-weight: 600;
     font-size: 3vh;
 }
 
@@ -103,8 +108,8 @@ body{
 }
 
 #tagline h4{
-    margin: 4vh 0vh 5vh;
+    margin: 3vh 0vh 6vh;
     font-size: 2.5vh;
-    color: #c0c0c0;
+    color: #b0b0b0;
     font-weight:100;
 }

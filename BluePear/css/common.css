@@ -1,11 +1,27 @@
+@font-face{
+    font-family: NokiaPureHeadline_UltraLight;
+    src: url('../fonts/NokiaPureHeadline_UltraLight.ttf');
+}
+
+@font-face{
+    font-family: NokiaPureText-Light;
+    src: url('../fonts/NokiaPureText-Light.ttf');
+}
+
+@font-face{
+    font-family: NokiaPureText-Regular;
+    src: url('../fonts/NokiaPureText-Regular.ttf');
+}
+
 body{
     height: 100%;
     margin: 0;
-    font-family: helvetica;
+    font-family: NokiaPureText-Light;
 }
 
 button{
     padding: 1.5vh 4vh 1.5vh 4vh;
+    font-family: NokiaPureText-Regular;
     font-size: 1.8vh;
     color: #183693;
     background-color: transparent;
@@ -22,6 +38,7 @@ button:hover{
 
 a.button{
     padding: 1.5vh 4vh 1.5vh 4vh;
+    font-family: NokiaPureText-Regular;
     font-size: 1.8vh;
     color: #183693;
     text-decoration: none;
@@ -39,4 +56,14 @@ a.button:hover{
     color: #ffffff;
     background-color: #183693;
     cursor: pointer;
+}
+
+.headline{
+    font-family: NokiaPureHeadline_UltraLight;
+    font-weight: 100;
+}
+
+.text{
+    font-family: NokiaPureText-Light;
+    font-weight: 100;
 }

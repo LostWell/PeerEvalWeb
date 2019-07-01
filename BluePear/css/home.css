@@ -1,0 +1,44 @@
+#content{
+    text-align: center;
+    width:80%;
+    margin: auto;
+}
+
+.option:first-of-type{
+    text-align: left;
+    color: #ffffff;
+    background-image: url(../images/manager.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.option:last-of-type{
+    text-align: right;
+    vertical-align: text-bottom;
+    background-image: url(../images/peer.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.option{
+    margin: 10vh auto auto 5vh;
+    padding: 5vh;
+    width:20%;
+    height:50vh;
+    background-color: #e0e0e0;
+    float:left;
+    font-size: 5vh;
+    box-shadow: 0vh 1vh 3vh rgb(0,0,0,0.2);
+    text-shadow: 0vh 1vh 2vh rgb(0,0,0,0.2);
+    transition: 1s;
+    filter: grayscale();
+    opacity: 0.8;
+}
+
+.option:hover{
+    width: 40%;
+    filter: none;
+    opacity: 1;
+}
