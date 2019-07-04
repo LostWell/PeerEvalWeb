@@ -13,10 +13,15 @@
     src: url('../fonts/NokiaPureText-Regular.ttf');
 }
 
-body{
+html{
     height: 100%;
+}
+
+body{
     margin: 0;
     font-family: NokiaPureText-Light;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 button{
@@ -26,6 +31,7 @@ button{
     color: #183693;
     background-color: transparent;
     border: 1.5px solid #183693;
+    border-radius: 3px;
     outline: none;
     transition: 0.3s;
 }
@@ -44,6 +50,7 @@ a.button{
     text-decoration: none;
     background-color: transparent;
     border: 1.5px solid #183693;
+    border-radius: 3px;
     outline: none;
     transition: 0.3s;
     -webkit-user-select: none; /* Safari 3.1+ */
