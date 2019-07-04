@@ -4,11 +4,12 @@ body{
 .headline{
     margin:auto;
     color: #000000;
+    font-size: 4vh;
 }
 
 #content{
     text-align: center;
-    width: 70%;
+    width: 65%;
     margin:  10vh auto auto auto;
 }
 
@@ -55,6 +56,7 @@ body{
     transition: 1s;
     filter: grayscale();
     opacity: 0.8;
+    cursor: pointer;
 }
 
 .option:hover{
@@ -88,5 +90,4 @@ body{
     -moz-user-select: none; /* Firefox 2+ */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Standard syntax */
-    cursor: pointer;
 }
