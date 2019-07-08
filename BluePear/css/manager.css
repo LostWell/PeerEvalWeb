@@ -10,16 +10,102 @@ body{
 #content{
     text-align: center;
     width: 65%;
-    margin:  10vh auto auto auto;
+    margin:  5vh auto auto auto;
 }
 
 .wrapper{
+    margin:  5vh auto auto auto;
     display: inline-block;
     background-color: #ffffff;
     border-radius: 2vh 2vh 0vh 0vh;
     box-shadow: 0vh 0vh 5vh rgb(0,0,0,0.15);
-    padding: 8vh 0vh 9.96vh 0vh;
+    padding: 3vh 0vh 9.96vh 0vh;
     opacity: 1;
     width: 100%;
     height: 100%;
+}
+
+.item{
+    text-align: left;
+    display: block;
+    padding: 2vh 10vh;
+    transition: 0.3s;
+}
+
+.item input{
+    margin: 0vh 1vh 0vh 0vh;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.item:hover {
+    background-color: #f0f0f0;
+}
+
+.item:hover > input {
+    opacity: 1;
+}
+
+.item input:checked {
+    opacity: 1;
+}
+
+.item input:checked {
+    opacity: 1;
+}
+
+#titlebar{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 10vh 0vh;
+    width: 100%;
+    height: 5vh;
+    margin: 3vh 0vh 0vh 0vh;
+}
+
+#cardTitle {
+    display: table-cell;
+    vertical-align: middle;
+    float: left;
+    color: #124191;
+}
+
+#toolbar{
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#toolbar button{
+    line-height: 3.5vh;
+    text-align: right;
+    border: none;
+    padding: 1vh 2vh;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    filter: grayscale();
+    transition: 0.3s;
+}
+
+#toolbar > button > img{
+    margin-right: 1vh;
+    float: left;
+    width: 3vh;
+    height: auto;
+}
+
+#toolbar button:hover{
+    filter: none;
+    color: #124191;
+}
+
+
+#toolbar button:focus{
+    filter: none;
+    color: #124191;
+    background-color: #f0f0f0;
 }
