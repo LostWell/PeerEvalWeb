@@ -56,9 +56,8 @@ body{
 
 #titlebar{
     display: table;
-    border-collapse: separate;
-    border-spacing: 10vh 0vh;
-    width: 100%;
+    margin: 0vh auto 5vh auto;
+    width: 80%;
     height: 5vh;
 }
 
@@ -107,4 +106,98 @@ body{
     filter: none;
     color: #124191;
     background-color: #f0f0f0;
+}
+
+#form{
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+    overflow: hidden;
+}
+
+input[type="text"] {
+    line-height: 2vh;
+    width: 100%;
+    padding: 2vh 1vh 0.7vh 1vh;
+    display: block;
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.2vh solid #d0d0d0;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:hover {
+    border-bottom: 0.2vh solid #c0c0c0;
+}
+
+input[type="text"]:focus {
+    border-bottom: 0.2vh solid #124191;
+}
+
+.categoryContainer{
+    width: 100%;
+    display: table;
+}
+
+.expandable{
+    padding: 0vh 1vh 0vh 0vh;
+    width: 3vh;
+    height: 5vh;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.expandable > img{
+    width: 2.5vh;
+    height: auto;
+    opacity: 0.8;
+}
+
+.category{
+    font-size: 2.7vh;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.questionContainer{
+    width: 100%;
+}
+
+.questionList {
+    margin: 0;
+    padding: 0vh 0vh 0vh 7vh;
+    font-size: 1.7vh;
+}
+
+.question {
+    font-size: 1.7vh;
+}
+
+.set{
+    padding-bottom: 5vh;
+}
+
+input[type="submit"]{
+    display: block;
+    margin: 5vh auto 0vh auto;
+    color: #124191;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1.5px solid #124191;
+    border-radius: 3px;
+    outline: none;
+    transition: 0.3s;
+    padding: 1.5vh 4vh 1.5vh 4vh;
+    font-size: 1.8vh;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    color: #ffffff;
+    background-color: #124191;
 }

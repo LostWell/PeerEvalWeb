@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/manager.css">
+        <link rel="stylesheet" type="text/css" href="../css/create.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
         <link rel="stylesheet" type="text/css" href="../css/nav.css">
@@ -14,7 +14,7 @@
             </a>
         </nav>
         <div id="content">
-            <h1 class="headline">Manager's Page</h1>
+            <h1 class="headline">Create Questionnaire</h1>
             <div class="wrapper">
             <div id="titlebar">
                 <h2 id="cardTitle">Questionnaire File Name</h2>
@@ -24,9 +24,35 @@
                     <button id="add"><img src="../images/plus-hover.png"/>Create</button>
                 </span>
             </div>
-                <label><span class="item"><input type="checkbox">questionnaire file name</span></label>
-                <label><span class="item"><input type="checkbox">questionnaire file name</span></label>
-                <label><span class="item"><input type="checkbox">questionnaire file name</span></label>
+                <div id="form">
+                    <div class="set">
+                        <span class="categoryContainer">
+                            <label class="expandable"><img src="../images/down-arrow.png"/></label>
+                            <input class="category" type="text" placeholder="Type to add a category">
+                        </span>
+                        <span class="questionContainer">
+                            <ol class="questionList">
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                            </ol>
+                        </span>
+                    </div>
+                    <div class="set">
+                        <span class="categoryContainer">
+                            <label class="expandable"><img src="../images/down-arrow.png"/></label>
+                            <input class="category" type="text" placeholder="Type to add a category">
+                        </span>
+                        <span class="questionContainer">
+                            <ol class="questionList">
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                                <li><input class="question" type="text" placeholder="Type to add a question"></li>
+                            </ol>
+                        </span>
+                    </div>
+                    <input type="submit" value="Submit">
+                </div>
             </div>
         </div>
     </body>
