@@ -13,4 +13,4 @@ function show_hide_icons(id_name){
           icon.style.visibility = 'hidden';
           console.log("No/more than one item is checked :<");
      }
- }
+}
