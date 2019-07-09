@@ -1,20 +1,16 @@
 // back-end peer eval
 
-$('#edit').hide();
 
-var checker = 0;
+function show_hide_icons(id_name){
+     var checkbox =  $("input:checkbox:checked").length;
+     var icon = document.getElementById(id_name);
 
-function show_hide_icons(){
-     var checkbox =  $('input:checkbox').is(':checked');
-     var icon = document.getElementById('edit');
- 
-     if((checkbox > 0) && (checker == 0)){
-          checker++;
+     if(((id_name == 'edit') && (checkbox == 1)) || ((id_name == 'delete') && (checkbox > 0))){
           console.log("Item is Checked!");
           icon.style.visibility = 'visible';
-     }
+     }   
      else{
           icon.style.visibility = 'hidden';
-          console.log("No item is checked :<");
+          console.log("No/more than one item is checked :<");
      }
  }
