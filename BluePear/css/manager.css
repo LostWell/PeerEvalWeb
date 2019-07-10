@@ -26,6 +26,7 @@ body{
 }
 
 .item{
+    font-size: 1.7vh;
     text-align: left;
     display: block;
     padding: 2vh 10vh;
@@ -63,6 +64,7 @@ body{
 }
 
 #cardTitle {
+    font-size: 3vh;
     display: table-cell;
     vertical-align: middle;
     float: left;

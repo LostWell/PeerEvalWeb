@@ -25,87 +25,16 @@ body{
     height: 100%;
 }
 
-.item{
-    text-align: left;
-    display: block;
-    padding: 2vh 10vh;
-    transition: 0.3s;
-}
-
-.item input{
-    margin: 0vh 1vh 0vh 0vh;
-    opacity: 0.5;
-    transition: 0.3s;
-}
-
-.item:hover {
-    background-color: #f0f0f0;
-}
-
-.item:hover > input {
-    opacity: 1;
-}
-
-.item input:checked {
-    opacity: 1;
-}
-
-.item input:checked {
-    opacity: 1;
-}
-
 #titlebar{
-    display: table;
     margin: 0vh auto 5vh auto;
     width: 80%;
     height: 5vh;
 }
 
 #cardTitle {
-    display: table-cell;
-    vertical-align: middle;
-    float: left;
-    color: #124191;
-}
-
-#toolbar{
-    text-align: right;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-#toolbar button{
-    line-height: 3.5vh;
-    text-align: right;
-    border: none;
-    padding: 1vh 2vh;
+    font-size: 3vh;
     text-align: center;
-    text-decoration: none;
-    background-color: transparent;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    filter: grayscale();
-    transition: 0.3s;
-}
-
-#toolbar > button > img{
-    margin-right: 1vh;
-    float: left;
-    width: 3vh;
-    height: auto;
-}
-
-#toolbar button:hover{
-    filter: none;
     color: #124191;
-}
-
-
-#toolbar button:focus{
-    filter: none;
-    color: #124191;
-    background-color: #f0f0f0;
 }
 
 #form{
@@ -115,10 +44,40 @@ body{
     overflow: hidden;
 }
 
+.set{
+    padding-bottom: 5vh;
+}
+
+.set label{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 1vh 1vh 0vh 1vh;
+    width: 3vh;
+    height: 1vh;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    filter: brightness(120%);
+}
+
+.set label > img{
+    width: 2vh;
+    height: auto;
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: hue-rotate(140deg);
+}
+
+.set label:hover > img{
+    opacity: 1;
+}
+
 input[type="text"] {
     line-height: 2vh;
     width: 100%;
-    padding: 2vh 1vh 0.7vh 1vh;
+    padding: 2vh 0vh 1vh 0vh;
     display: block;
     background-color: transparent;
     border: none;
@@ -128,7 +87,7 @@ input[type="text"] {
 }
 
 input[type="text"]:hover {
-    border-bottom: 0.2vh solid #c0c0c0;
+    border-bottom: 0.2vh solid #a0a0a0;
 }
 
 input[type="text"]:focus {
@@ -138,24 +97,6 @@ input[type="text"]:focus {
 .categoryContainer{
     width: 100%;
     display: table;
-}
-
-.expandable{
-    padding: 0vh 1vh 0vh 0vh;
-    width: 3vh;
-    height: 5vh;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.expandable > img{
-    width: 2.5vh;
-    height: auto;
-    opacity: 0.8;
 }
 
 .category{
@@ -174,12 +115,14 @@ input[type="text"]:focus {
     font-size: 1.7vh;
 }
 
-.question {
-    font-size: 1.7vh;
+.questionList li span {
+    width: 100%;
+    display: table;
 }
 
-.set{
-    padding-bottom: 5vh;
+.question {
+    display: table-cell;
+    font-size: 1.7vh;
 }
 
 input[type="submit"]{
