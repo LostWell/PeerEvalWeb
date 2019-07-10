@@ -87,7 +87,7 @@ input[type="text"] {
     padding: 2vh 1vh 0.8vh 1vh;
     background-color: transparent;
     border: none;
-    border-bottom: 0.2vh solid #d0d0d0;
+    border-bottom: 0.2vh solid transparent;
     outline: none;
     transition: 0.3s;
 }
