@@ -5,6 +5,9 @@
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
         <link rel="stylesheet" type="text/css" href="../css/nav.css">
+     
+        <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="../scripts/peer-eval.js"></script>
     </head>
     <body>
         <nav>
@@ -22,63 +25,26 @@
                 <div id="form">
                     <br/>
                     <h3>Questions</h3>
-                    <div class="set">
-                        <span class="categoryContainer">
-                            <label class="expandable"><img src="../images/down-arrow.png"/></label>
-                            <input class="category" type="text" placeholder="Type to add a category">
-                            <label class="delete"><img src="../images/delete-hover.png"/></label>
-                        </span>
-                        <span class="questionContainer">
-                            <ol class="itemList">
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                            </ol>
-                        </span>
-                    </div>
-                    <div class="set">
-                        <span class="categoryContainer">
-                            <label class="expandable"><img src="../images/down-arrow.png"/></label>
-                            <input class="category" type="text" placeholder="Type to add a category">
-                            <label class="delete"><img src="../images/delete-hover.png"/></label>
-                        </span>
-                        <span class="questionContainer">
-                            <ol class="itemList">
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Type to add a question">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                            </ol>
-                        </span>
+                    <div id="categories">
+                        <div class="set">
+                            <span class="categoryContainer">
+                                <label class="expandable"><img src="../images/down-arrow.png"/></label>
+                                <input id="category" class="category" type="text" placeholder="Type to add a category">
+                                <label class="delete"><img src="../images/delete-hover.png"/></label>
+                            </span>
+                            <span class="questionContainer">
+                                <ol class="itemList">
+                                    <div id="questions">
+                                        <li>
+                                            <span class="item">
+                                                <input id="question" type="text" placeholder="Type to add a question">
+                                                <label class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                    </div>
+                                </ol>
+                            </span>
+                        </div>
                     </div>
                     
                     <div class="set">
@@ -86,18 +52,6 @@
                             <br/>
                             <h3>Participants</h3>
                             <ol class="itemList">
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Enter a participant's name">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="item">
-                                        <input type="text" placeholder="Enter a participant's name">
-                                        <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                    </span>
-                                </li>
                                 <li>
                                     <span class="item">
                                         <input type="text" placeholder="Enter a participant's name">
