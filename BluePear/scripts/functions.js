@@ -1,15 +1,5 @@
 // functions for execution
 
-function trial(){
-     console.log("Entering...");
-     var trial = document.getElementsByName("categories");
-     console.log(trial);
-}
-
-function create_database(){
-     var data = document.getElementById("info");
-     console.log(data);
-}
 
 // Generate Questionnaire to excel file
 function create_questions(){
