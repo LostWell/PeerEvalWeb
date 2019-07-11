@@ -79,7 +79,7 @@ function show_hide_icons(id_name){
      }   
      else{
           icon.style.visibility = 'hidden';
-          console.log("No/more than one item is checked :<");
+          //console.log("No/more than one item is checked :<");
      }
 }
 
