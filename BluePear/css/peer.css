@@ -42,6 +42,8 @@ body{
 
 table{
     width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 2vh;
 }
 
 td, th{
@@ -57,7 +59,7 @@ th{
 }
 
 textarea{
-    width: 100%;
+    width: 90%;
     padding: 2vh;
     font-family: NokiaPureText-Regular;
     border-radius: 2vh;
@@ -72,6 +74,7 @@ input[type="radio"]{
     height: 2vh;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .rating{

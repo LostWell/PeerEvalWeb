@@ -30,8 +30,10 @@ body{
     font-size: 2vh;
     text-align: left;
     display: block;
-    padding: 2vh 0vh;
+    box-sizing: border-box;
+    padding: 3vh 3vh;
     transition: 0.3s;
+    border-radius: 2vh;
 }
 
 .item input{
