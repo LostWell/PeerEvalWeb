@@ -34,7 +34,6 @@ $(window).on('load', function(){
      $(document).on('keypress', '#question', function(){
           var parent_id = '#' + $(this).closest('div').attr('id');
           console.log("Here! " + parent_id);
-          //document.getElementById("question").removeAttribute("id");
           //var class_name = "set" + no_categories;
           var add_box = '<li>\
                               <span class="item">\
@@ -43,6 +42,7 @@ $(window).on('load', function(){
                               </span>\
                          </li>';
           $(parent_id).append(add_box);
+          $(this).removeAttr('id');
      });
 });
 
