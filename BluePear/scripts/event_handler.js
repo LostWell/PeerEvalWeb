@@ -13,7 +13,7 @@ $(window).on('load', function(){
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
-                                   <input id="category" class="category" name="category" type="text" placeholder="Type to add a category">\
+                                   <input id="category" class="category" name=' + id_categoryno + ' type="text" placeholder="Type to add a category">\
                                    <label class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\

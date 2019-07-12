@@ -1,7 +1,7 @@
 // functions for execution
 
 // variables used
-var questionnaire = $JExcel.new("Arial 10 green");
+var questionnaire = $JExcel.new("Arial 10");
 var categories = [];
 var input_filename = [];
 
@@ -24,8 +24,10 @@ function create_questions(){
           addQuestionsPerCateg(questionnaire, 0, categories);
 
           /*for(var i = 1; i <= categories.length; i++){
-               //var category = 'category' + i;
-               var questions = getQuestions(category[i]);
+               var category = categories[i];
+               category = $('[value=' + category + ']').attr('name');
+               console.log(category);
+               var questions = getQuestions(category);
                addQuestionsPerCateg(questionnaire, i, questions);
           }*/
           questionnaire.generate(filename);
@@ -39,8 +41,8 @@ function getCategories(){
 }
 
 // get questions
-function getQuestions(category_name){
-     var input = document.getElementById(category_name).getElementsByTagName('input');
+function getQuestions(category_no){
+     var input = document.getElementById(category_no).getElementsByTagName('input');
      var questions = [];
      console.log('Getting questions');
      for(var i = 0; i < input.length; i++){
