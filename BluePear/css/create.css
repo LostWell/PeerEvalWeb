@@ -19,6 +19,7 @@ body{
     background-color: #ffffff;
     border-radius: 2vh 2vh 0vh 0vh;
     box-shadow: 0vh 0vh 5vh rgb(0,0,0,0.15);
+    box-sizing: border-box;
     padding: 10vh 0vh 10vh 0vh;
     opacity: 1;
     width: 100%;
@@ -150,24 +151,4 @@ input[type="text"]:focus {
 .item input {
     display: table-cell;
     font-size: 1.7vh;
-}
-
-input[type="submit"]{
-    display: block;
-    margin: 5vh auto 0vh auto;
-    color: #124191;
-    text-decoration: none;
-    background-color: transparent;
-    border: 1.5px solid #124191;
-    border-radius: 3px;
-    outline: none;
-    transition: 0.3s;
-    padding: 1.5vh 4vh 1.5vh 4vh;
-    font-size: 1.8vh;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover{
-    color: #ffffff;
-    background-color: #124191;
 }

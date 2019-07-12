@@ -56,3 +56,73 @@ a.button:hover{
     font-family: NokiaPureText-Light;
     font-weight: 100;
 }
+
+input[type="submit"]{
+    display: block;
+    margin: 5vh auto 0vh auto;
+    color: #124191;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1.5px solid #124191;
+    border-radius: 3px;
+    outline: none;
+    transition: 0.3s;
+    padding: 1.5vh 4vh 1.5vh 4vh;
+    font-size: 1.8vh;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    color: #ffffff;
+    background-color: #124191;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 375px) {
+    #content{
+        width: 100%;
+    }
+    .wrapper{
+        padding: 0.5vh 0.5vh 0.5vh 0.5vh;
+    }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #content{
+        width: 100%;
+    }
+    .wrapper{
+        padding: 1vh 1vh 1vh 1vh;
+    }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #content{
+        width: 90%;
+    }
+    .wrapper{
+        padding: 4vh 4vh 4vh 4vh;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #content{
+        width: 80%;
+    }
+    .wrapper{
+        padding: 7vh 7vh 7vh 7vh;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #content{
+        width: 65%;
+    }
+    .wrapper{
+        padding: 10vh 10vh 10vh 10vh;
+    }
+}
