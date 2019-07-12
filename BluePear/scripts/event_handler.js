@@ -34,8 +34,6 @@ $(window).on('load', function(){
 
      $(document).on('keypress', '#question', function(){
           var parent_id = '#' + $(this).closest('div').attr('id');
-          //console.log("Here! " + parent_id);
-          //var class_name = "set" + no_categories;
           var add_box = '<li>\
                               <span class="item">\
                                    <input id="question" type="text" placeholder="Type to add a question">\
@@ -61,11 +59,24 @@ $(window).on('load', function(){
           var parent_class = $(this).closest('div').attr('class');
           if(parent_class == 'set'){
                no_categories--;
-               $(this).closest('div').removeClass().addClass('set_remove');
-               $('.set_remove').children().remove();
+               if(no_categories > 0){
+                    $(this).closest('div').removeClass().addClass('set_remove');
+                    $('.set_remove').children().remove();
+               }
+               else{
+                    no_categories++;
+               }
           }
           else{
-               $(this).closest('li').remove().children().remove();
+               var check = (this).getElementsByTagName('input');
+               console.log('Here!');
+               console.log(check.length);
+               if(check.length > 0){
+                    $(this).closest('li').remove().children().remove();
+               }
+               else{
+
+               }
           }
      });
 });
