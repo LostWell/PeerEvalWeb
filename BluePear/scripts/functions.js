@@ -21,15 +21,11 @@ function create_questions(){
           addSheetsNames(questionnaire, categories);
 
           categories.splice(0, 1);
-
-          var category = 'category1';
-          var questions = getQuestions(category);
           addQuestionsPerCateg(questionnaire, 0, categories);
-          addQuestionsPerCateg(questionnaire, 1, questions);
-          /*for(var i = 0; i < categories.length; i++){
-               var j = i++;
-               var category = 'category' + j;
-               var questions = getQuestions(category);
+
+          /*for(var i = 1; i <= categories.length; i++){
+               //var category = 'category' + i;
+               var questions = getQuestions(category[i]);
                addQuestionsPerCateg(questionnaire, i, questions);
           }*/
           questionnaire.generate(filename);
@@ -43,8 +39,8 @@ function getCategories(){
 }
 
 // get questions
-function getQuestions(category_no){
-     var input = document.getElementById(category_no).getElementsByTagName('input');
+function getQuestions(category_name){
+     var input = document.getElementById(category_name).getElementsByTagName('input');
      var questions = [];
      console.log('Getting questions');
      for(var i = 0; i < input.length; i++){
@@ -71,7 +67,7 @@ function addQuestionsPerCateg(workbook, SheetNo, questions){
 
 // get user's input
 function get_InputValues(element_name, variable_name){
-     var input = document.getElementsByName(element_name);
+     var input = document.getElementsByClassName(element_name);
      for(var i = 0; i < input.length; i++){
           variable_name.push(input[i].value);
      }
