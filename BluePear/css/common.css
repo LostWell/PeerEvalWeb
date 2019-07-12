@@ -22,6 +22,7 @@ body{
     font-family: NokiaPureText-Light;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #124191;
 }
 
 a.button{
@@ -50,6 +51,7 @@ a.button:hover{
 .headline{
     font-family: NokiaPureHeadline_Ultralight;
     font-weight: 100;
+    color: #ffffff;
 }
 
 .text{
