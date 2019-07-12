@@ -68,14 +68,13 @@ $(window).on('load', function(){
                }
           }
           else{
-               var check = (this).getElementsByTagName('input');
-               console.log('Here!');
-               console.log(check.length);
-               if(check.length > 0){
+               var check = $(this).closest('div').children('li');
+               //console.log(check.length);
+               if(check.length > 1){
                     $(this).closest('li').remove().children().remove();
                }
                else{
-
+                    console.log('No question textbox left!');
                }
           }
      });
