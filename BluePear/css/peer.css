@@ -56,12 +56,12 @@ table{
 }
 
 td, th{
-    padding: 2vh 2vh;
     text-align: center;
     vertical-align: middle;
 }
 
 th{
+    padding: 2vh 1vh;
     width: 20%;
     background-color: #124191;
     color: white;
@@ -69,8 +69,10 @@ th{
 }
 
 textarea{
+    font-size: 1.8vh;
+    margin-top: 1vh;
     width: 90%;
-    padding: 2vh;
+    padding: 1vh 2vh;
     font-family: NokiaPureText-Regular;
     border-radius: 2vh;
     box-sizing: border-box;
@@ -88,7 +90,8 @@ input[type="radio"]{
 }
 
 .rating{
-    border-radius: 2vh;
+    font-size: 1.8vh;
+    border-radius: 0vh 0vh 2vh 2vh;
     text-align: center;
     display: inline-block;
     width: 18%;
@@ -114,6 +117,10 @@ select{
     outline: none;
 }
 
+select option{
+    padding: 1vh 2vh;
+}
+
 .input{
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }

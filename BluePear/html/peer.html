@@ -46,7 +46,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -63,7 +63,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -80,7 +80,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -100,7 +100,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -117,7 +117,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -134,7 +134,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -154,7 +154,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -171,7 +171,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -188,7 +188,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <textarea rows="2" cols="50" placeholder="Enter your comments here"></textarea>
+                                            <textarea rows="1" cols="50" placeholder="Enter your comments here"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -201,13 +201,16 @@
         </div>
         
         <script>
-            document.querySelector(".carouselItem input").addEventListener("change", function(){
-                if(this.checked) {
-                    this.parentElement.style.borderBottom = "0.8vh solid #124191";
-                } else {
-                    this.parentElement.style.borderBottom = "0.8vh solid transparent";
-                }
-            });
+            var radioButtons = document.querySelectorAll("input[type=\"radio\"]");
+            for(var i=0; i < radioButtons.length; i++){
+                radioButtons[i].addEventListener("change", function(){
+                    if(this.checked) {
+                        this.parentElement.style.backgroundColor = "#d0d0d0";
+                    } else {
+                        this.parentElement.style.backgroundColor = "transparent";
+                    }
+                });
+            }
         </script>
     </body>
 </html>

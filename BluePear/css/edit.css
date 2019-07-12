@@ -19,6 +19,7 @@ body{
     background-color: #ffffff;
     border-radius: 2vh 2vh 0vh 0vh;
     box-shadow: 0vh 0vh 5vh rgb(0,0,0,0.15);
+    box-sizing: border-box;
     padding: 10vh 0vh 10vh 0vh;
     opacity: 1;
     width: 100%;
