@@ -1,6 +1,7 @@
 // functions for execution
 
 // variables used
+var questionnaire = $JExcel.new("Arial 14 green");
 var categories = [];
 
 // Generate Questionnaire to excel file
@@ -8,7 +9,8 @@ function create_questions(){
      console.log("Generating Questions...");
 
      if(prompt_final() == true){
-          categories = get_value("categories");
+          //categories = get_value("categories");
+          getCategories();
           categories.splice(categories.length - 1, 1);
           console.log(categories);
           addSheetsNames(questionnaire, categories);
