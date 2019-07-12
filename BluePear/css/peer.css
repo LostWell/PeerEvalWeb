@@ -46,7 +46,6 @@ h3{
 
 h4{
     font-size: 2vh;
-    font-weight: 500;
 }
 
 table{
@@ -107,26 +106,12 @@ input[type="radio"]{
     background-color: #e0e0e0;
 }
 
-#carousel{
-    width: 100%;
+select{
+    padding: 1vh 2vh;
+    text-align: center;
     margin: auto;
-    text-align: center;
-}
-
-.carouselItem {
-    text-align: center;
-    display: inline-block;
-    width: 18%;
-    padding: 1vh;
-    box-sizing: border-box;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.carouselItem input[type="radio"]{
+    float: right;
+    outline: none;
 }
 
 .input{
