@@ -1,5 +1,7 @@
 // functions for execution
 
+// variables used
+var categories = [];
 
 // Generate Questionnaire to excel file
 function create_questions(){
@@ -19,7 +21,7 @@ function create_questions(){
 // get categories
 function getCategories(){
      categories = ['list of categories'];
-     get_InputValues("categories", categories);
+     get_InputValues('category', categories);
 }
 
 // get questions
@@ -44,7 +46,9 @@ function addQuestionsPerCateg(workbook, SheetNo, questions){
 
 // get user's input
 function get_InputValues(element_name, variable_name){
-     var input = document.getElementsByName(element_name);
+     console.log('Here!');
+     var input = document.getElementsByClassName(element_name);
+     console.log(input);
      for(var i = 0; i < input.length; i++){
           variable_name.push(input[i].value);
      }
