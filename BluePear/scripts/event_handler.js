@@ -1,6 +1,7 @@
 // back-end peer eval
 
 var no_categories = 1;
+//var current_category_no = 0;
 
 $(window).on('load', function(){
      // when the latest textbox category is clicked, new textbox for category will be inserted
@@ -12,7 +13,7 @@ $(window).on('load', function(){
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
-                                   <input id="category" class="category" type="text" placeholder="Type to add a category">\
+                                   <input id="category" class="category" name="category" type="text" placeholder="Type to add a category">\
                                    <label class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\

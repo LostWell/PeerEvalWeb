@@ -1,22 +1,38 @@
 // functions for execution
 
 // variables used
-var questionnaire = $JExcel.new("Arial 14 green");
+var questionnaire = $JExcel.new("Arial 10 green");
 var categories = [];
+var input_filename = [];
 
 // Generate Questionnaire to excel file
 function create_questions(){
      console.log("Generating Questions...");
 
+
      if(prompt_final() == true){
-          //categories = get_value("categories");
+          get_InputValues('questionnaire', input_filename);
+          var filename = input_filename[0] + '.xlsx';
+          console.log('Here!');
+          console.log(filename);
           getCategories();
           categories.splice(categories.length - 1, 1);
           console.log(categories);
           addSheetsNames(questionnaire, categories);
-          //for(var i = 0; i < categories.length; i++)
-          //     addQuestionsPerCateg(questionnaire, i, questions[i]);
-          questionnaire.generate("questionnare.xlsx");
+
+          categories.splice(0, 1);
+
+          var category = 'category1';
+          var questions = getQuestions(category);
+          addQuestionsPerCateg(questionnaire, 0, categories);
+          addQuestionsPerCateg(questionnaire, 1, questions);
+          /*for(var i = 0; i < categories.length; i++){
+               var j = i++;
+               var category = 'category' + j;
+               var questions = getQuestions(category);
+               addQuestionsPerCateg(questionnaire, i, questions);
+          }*/
+          questionnaire.generate(filename);
      }
 }
 
@@ -27,9 +43,16 @@ function getCategories(){
 }
 
 // get questions
-function getQuestions(){
-     questions = [];
-     get_InputValues("questions", questions);
+function getQuestions(category_no){
+     var input = document.getElementById(category_no).getElementsByTagName('input');
+     var questions = [];
+     console.log('Getting questions');
+     for(var i = 0; i < input.length; i++){
+          questions.push(input[i].value);
+     }
+     console.log(questions);
+     //get_InputValues(category_no, questions);
+     return questions;
 }
 
 // add names of sheets (category)
@@ -42,15 +65,13 @@ function addSheetsNames(workbook, SheetNames){
 // add questions per category in its specified sheet no.
 function addQuestionsPerCateg(workbook, SheetNo, questions){
      for(var i = 0; i < questions.length; i++){
-          workbook.set(SheetNo, 0, i, questions[i]);
+          workbook.set(SheetNo, 0, i, questions[i]); // column, row
      }
 }
 
 // get user's input
 function get_InputValues(element_name, variable_name){
-     console.log('Here!');
-     var input = document.getElementsByClassName(element_name);
-     console.log(input);
+     var input = document.getElementsByName(element_name);
      for(var i = 0; i < input.length; i++){
           variable_name.push(input[i].value);
      }
