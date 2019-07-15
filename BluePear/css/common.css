@@ -95,7 +95,7 @@ input[type="submit"]:hover{
         width: 100%;
     }
     .wrapper{
-        padding: 1vh 1vh 1vh 1vh;
+        padding: 2vh 2vh 2vh 2vh;
     }
 } 
 
@@ -105,7 +105,7 @@ input[type="submit"]:hover{
         width: 90%;
     }
     .wrapper{
-        padding: 4vh 4vh 4vh 4vh;
+        padding: 5vh 5vh 5vh 5vh;
     }
 } 
 
@@ -127,4 +127,4 @@ input[type="submit"]:hover{
     .wrapper{
         padding: 10vh 10vh 10vh 10vh;
     }
-}
+}s
