@@ -99,3 +99,9 @@ function show_hide_icons(id_name){
      }
 }
 
+
+/* PEER SIDE FUNCTIONS */
+
+function displayNames(){
+
+}

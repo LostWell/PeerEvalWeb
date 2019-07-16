@@ -1,5 +1,7 @@
 // functions for execution
 
+/* MANAGER SIDE FUNCTIONS */
+
 // variables used
 var questionnaire = $JExcel.new("Arial 10");
 var categories = [];
