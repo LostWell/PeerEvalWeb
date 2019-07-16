@@ -132,6 +132,8 @@ input[type="submit"]:hover{
         font-size: 1.6vh;
     }
     .option:first-of-type{
+        opacity: 1;
+        filter: none;
         border-radius: 0;
         width: 100%;
         height: 30vh;
@@ -139,6 +141,8 @@ input[type="submit"]:hover{
         text-align: center;
     }
     .option:last-of-type{
+        opacity: 1;
+        filter: none;
         border-radius: 0;
         width: 100%;
         height: 30vh;
@@ -209,6 +213,8 @@ input[type="submit"]:hover{
         font-size: 1.6vh;
     }
     .option:first-of-type{
+        opacity: 1;
+        filter: none;
         border-radius: 0;
         width: 100%;
         height: 30vh;
@@ -216,6 +222,8 @@ input[type="submit"]:hover{
         text-align: center;
     }
     .option:last-of-type{
+        opacity: 1;
+        filter: none;
         border-radius: none;
         width: 100%;
         height: 30vh;

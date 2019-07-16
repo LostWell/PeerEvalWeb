@@ -163,9 +163,10 @@ body{
     }
     #visualContainer{
         margin: 15vh auto auto auto;
-        width: 80%;
+        width: 90%;
     }
     #tagline{
+        margin: 5vh auto auto auto;
         float: none;
         text-align: center;
     }
