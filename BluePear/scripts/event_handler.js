@@ -7,22 +7,27 @@ $(window).on('load', function(){
      // when the latest textbox category is clicked, new textbox for category will be inserted
      $(document).on('keypress', '#category', function(){
           no_categories++;
+
+           // transfer id to secure that the last added category textbox will not be deleted and on keypress in it, another textbox will appear
           document.getElementById('category').removeAttribute('id');
-          var id_categoryno = 'category' + no_categories;
-          var delete_name = 'delete' + no_categories;
+          document.getElementById('delete_category').removeAttribute('id');
+
+          var category_no = 'category' + no_categories; // to classify later on what categories do the questions belong
+          var delete_question = 'delete' + no_categories;
+          
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
                                    <input id="category" class="category" type="text" placeholder="Type to add a category">\
-                                   <label name=' + id_categoryno + ' class="delete"><img src="../images/delete-hover.png"/></label>\
+                                   <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\
                                 <ol class="itemList">\
-                                    <div id=' + id_categoryno + '>\
+                                    <div id=' + category_no + '>\
                                         <li>\
                                             <span class="item">\
-                                                <input name=' + id_categoryno + ' id="question" type="text" placeholder="Type to add a question">\
-                                                <label id=' + delete_name + ' class="delete"><img src="../images/delete-hover.png"/></label>\
+                                                <input name=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
+                                                <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                                             </span>\
                                         </li>\
                                     </div>\
@@ -34,13 +39,10 @@ $(window).on('load', function(){
 
      $(document).on('keypress', '#question', function(){
           var parent_id = '#' + $(this).closest('div').attr('id');
-          var name_category = (this).getAttribute('name');
+          var name_category = (this).getAttribute('name'); // to classify later on what categories do the questions belong
           console.log(name_category);
           var delete_name = 'delete' + name_category[name_category.length - 1];
-          console.log(delete_name);
-          if(document.getElementById(delete_name) != null){
-               document.getElementById(delete_name).removeAttribute('id');
-          }
+          document.getElementById(delete_name).removeAttribute('id'); // transfer id to secure that the last added question textbox will not be deleted
           var add_box = '<li>\
                               <span class="item">\
                                    <input name=' + name_category + ' id="question" type="text" placeholder="Type to add a question">\
@@ -65,16 +67,12 @@ $(window).on('load', function(){
      $(document).on('click', '.delete', function(){
           var parent_class = $(this).closest('div').attr('class');
           if(parent_class == 'set'){
-               var checker = $(this).attr('name');
-               checker = checker[checker.length - 1];
-               //console.log(checker);
-               if(checker != no_categories){
+               var check = (this).getAttribute('id');
+               //console.log(check);
+               if(check == null){
                     //no_categories--;
                     $(this).closest('div').removeClass().addClass('set_remove');
                     $('.set_remove').children().remove();
-               }
-               else{
-                    //no_categories++;
                }
           }
           else{
@@ -82,9 +80,6 @@ $(window).on('load', function(){
                //console.log(check);
                if(check == null){
                     $(this).closest('li').remove().children().remove();
-               }
-               else{
-                    console.log('No question textbox left!');
                }
           }
      });
