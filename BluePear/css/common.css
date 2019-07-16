@@ -158,6 +158,9 @@ input[type="submit"]:hover{
     #visualContainer{
         margin: 0vh auto auto auto;
     }
+    #toolbar{
+        display: block;
+    }
 }
 
 /* 
@@ -238,5 +241,8 @@ input[type="submit"]:hover{
     }
     #visualContainer{
         margin: 0vh auto auto auto;
+    }
+    #toolbar{
+        display: block;
     }
 }

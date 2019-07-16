@@ -36,7 +36,7 @@
                     <div id="categories">
                         <div class="set">
                             <span class="categoryContainer">
-                                <label class="expandable"><img src="../images/down-arrow.png"/></label>
+                                <label class="expandable expanded"></label>
                                 <input id="category" class="category" name="category1" type="text" placeholder="Type to add a category">
                                 <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>
                             </span>
@@ -49,31 +49,79 @@
                                                 <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
                                             </span>
                                         </li>
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a question">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a question">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
                                     </div>
                                 </ol>
                             </span>
                         </div>
                     </div>
                     
-                    <div class="set">
-                        <div id="participantsContainer">
-                            <br/>
-                            <h3>Participants</h3>
-                            <ol class="itemList">
-                                <div id="participants">
-                                    <li>
-                                        <span class="item">
-                                            <input id="participant" type="text" placeholder="Enter a participant's name">
-                                            <label class="delete"><img src="../images/delete-hover.png"/></label>
-                                        </span>
-                                    </li>
-                                </div>
-                            </ol>
+                    <div id="participantsContainer">
+                        <br/>
+                        <h3>Participants</h3>
+                        <div class="set">
+                            <span class="categoryContainer">
+                                <label class="expandable expanded"></label>
+                                <input id="category" class="category" name="category1" type="text" placeholder="Type to add a team">
+                                <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>
+                            </span>
+                            <span class="questionContainer">
+                                <ol class="itemList">
+                                    <div id="category1">
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a member">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a member">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a member">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                    </div>
+                                </ol>
+                            </span>
                         </div>
                     </div>
                     <input type="submit" value="Create" onclick="create_questions()">
                 </div>
             </div>
         </div>
+        <script>
+            var expandable = document.getElementsByClassName("expandable");
+            for(var i=0; i<expandable.length; i++){
+                expandable[i].addEventListener("click", function addExpandedEvent(){
+                    if(this.classList.contains("expanded")){
+                        this.parentElement.nextElementSibling.style.display = "none";
+                        this.classList.add("collapsed");
+                        this.classList.remove("expanded");
+                    } else if(this.classList.contains("collapsed")){
+                        this.parentElement.nextElementSibling.style.display = "block";
+                        this.classList.add("expanded");
+                        this.classList.remove("collapsed");
+                    }
+                    this.addEventListener("click", addExpandedEvent);
+                });
+            }
+        </script>
     </body>
 </html>

@@ -33,7 +33,7 @@ body{
 }
 
 #cardTitle {
-    width: 60%;
+    width: 70%;
     font-size: 3vh;
     text-align: center;
     color: #124191;
@@ -59,10 +59,7 @@ h3{
     vertical-align: middle;
     text-align: center;
     opacity: 0.5;
-    padding: 1vh 1.5vh 0vh 1.5vh;
-    width: 3vh;
     height: auto;
-    background: none;
     border: none;
     outline: none;
     cursor: pointer;
@@ -78,6 +75,21 @@ h3{
 
 .set label:hover{
     opacity: 1;
+}
+
+.expandable{
+    width: 4%;
+    background-position: center;
+    background-size: 2vh;
+    background-repeat: no-repeat;
+}
+
+.expanded{
+    background-image: url("../images/up-arrow.png");
+}
+
+.collapsed{
+    background-image: url("../images/down-arrow.png");
 }
 
 input[type="text"] {
@@ -122,6 +134,7 @@ input[type="text"]:focus {
 
 .questionContainer{
     width: 100%;
+    transition: 0.3s;
 }
 
 .itemList {
