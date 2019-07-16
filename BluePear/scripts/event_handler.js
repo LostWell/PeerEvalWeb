@@ -14,11 +14,11 @@ $(window).on('load', function(){
 
           var category_no = 'category' + no_categories; // to classify later on what categories do the questions belong
           var delete_question = 'delete' + no_categories;
-          
+
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
-                                   <input id="category" class="category" type="text" placeholder="Type to add a category">\
+                                   <input id="category" class="category" name=' + category_no + ' type="text" placeholder="Type to add a category">\
                                    <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\
@@ -26,7 +26,7 @@ $(window).on('load', function(){
                                     <div id=' + category_no + '>\
                                         <li>\
                                             <span class="item">\
-                                                <input name=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
+                                                <input class=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
                                                 <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                                             </span>\
                                         </li>\
@@ -38,18 +38,18 @@ $(window).on('load', function(){
      });
 
      $(document).on('keypress', '#question', function(){
-          var parent_id = '#' + $(this).closest('div').attr('id');
-          var name_category = (this).getAttribute('name'); // to classify later on what categories do the questions belong
+          var id_category = '#' + $(this).closest('div').attr('id');
+          var name_category = (this).getAttribute('class'); // to classify later on what categories do the questions belong
           console.log(name_category);
           var delete_name = 'delete' + name_category[name_category.length - 1];
           document.getElementById(delete_name).removeAttribute('id'); // transfer id to secure that the last added question textbox will not be deleted
           var add_box = '<li>\
                               <span class="item">\
-                                   <input name=' + name_category + ' id="question" type="text" placeholder="Type to add a question">\
+                                   <input class=' + name_category + ' id="question" type="text" placeholder="Type to add a question">\
                                    <label id=' + delete_name + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                          </li>';
-          $(parent_id).append(add_box);
+          $(id_category).append(add_box);
           $(this).removeAttr('id');
      });
 

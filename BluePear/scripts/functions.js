@@ -15,21 +15,16 @@ function create_questions(){
           var filename = input_filename[0] + '.xlsx';
           console.log('Here!');
           console.log(filename);
-          getCategories();
-          categories.splice(categories.length - 1, 1);
-          console.log(categories);
+          var category_label = getCategories();
           addSheetsNames(questionnaire, categories);
 
           categories.splice(0, 1);
-          addQuestionsPerCateg(questionnaire, 0, categories);
+          addValues_in_Sheet(questionnaire, 0, categories);          
 
-          /*for(var i = 1; i <= categories.length; i++){
-               var category = categories[i];
-               category = $('[value=' + category + ']').attr('name');
-               console.log(category);
-               var questions = getQuestions(category);
-               addQuestionsPerCateg(questionnaire, i, questions);
-          }*/
+          for(var i = 0; i < categories.length; i++){
+               var questions = getQuestions(category_label[i]);
+               addValues_in_Sheet(questionnaire, i+1, questions);
+          }
           questionnaire.generate(filename);
      }
 }
@@ -37,19 +32,15 @@ function create_questions(){
 // get categories
 function getCategories(){
      categories = ['list of categories'];
-     get_InputValues('category', categories);
+     category_label = get_InputValues('category', categories);
+     return category_label;
 }
 
 // get questions
 function getQuestions(category_no){
-     var input = document.getElementById(category_no).getElementsByTagName('input');
      var questions = [];
-     console.log('Getting questions');
-     for(var i = 0; i < input.length; i++){
-          questions.push(input[i].value);
-     }
-     console.log(questions);
-     //get_InputValues(category_no, questions);
+     get_InputValues(category_no, questions);
+     
      return questions;
 }
 
@@ -60,27 +51,32 @@ function addSheetsNames(workbook, SheetNames){
      }
 }
 
-// add questions per category in its specified sheet no.
-function addQuestionsPerCateg(workbook, SheetNo, questions){
-     for(var i = 0; i < questions.length; i++){
-          workbook.set(SheetNo, 0, i, questions[i]); // column, row
+// add values in specified sheet no.
+function addValues_in_Sheet(workbook, SheetNo, values){
+     for(var i = 0; i < values.length; i++){
+          workbook.set(SheetNo, 0, i, values[i]); // column, row
      }
 }
 
 // get user's input
 function get_InputValues(element_name, variable_name){
      var input = document.getElementsByClassName(element_name);
+     var names = [];
      for(var i = 0; i < input.length; i++){
-          variable_name.push(input[i].value);
+          if(input[i].value != '')
+               variable_name.push(input[i].value);
+          if(input[i].name != null)
+               names.push(input[i].name);
      }
      var check = store_value(element_name, variable_name);
      if(check == true){
           console.log("finished getting inputs");
           console.log(get_value(element_name));
      }
+     return names;
 }
 
-// stores value of variables to be avaible in all pages
+// stores value of variables to be available in all pages
 function store_value(name, value){
      sessionStorage.setItem(name, value);
      if(sessionStorage.getItem(name) != null)
