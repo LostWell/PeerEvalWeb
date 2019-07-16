@@ -17,7 +17,27 @@ $(window).on('load', function(){
 
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
-                                   <label class="expandable"><img src="../images/down-arrow.png"/></label>\
+                                   <label class="expandable expanded"></label>\
+                                   <input id="category" class="category" name=' + category_no + ' type="text" placeholder="Type to add a category">\
+                                   <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
+                              </span>\
+                              <span class="questionContainer">\
+                                   <ol class="itemList">\
+                                        <div id=' + category_no + '>\
+                                             <li>\
+                                                  <span class="item">\
+                                                       <input class=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
+                                                       <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
+                                                  </span>\
+                                             </li>\
+                                        </div>\
+                                   </ol>\
+                              </span>\
+                         </div>';
+
+          /*var add_box = '<div class="set">\
+                              <span class="categoryContainer">\
+                                   <label class="expandable expanded"></label>\
                                    <input id="category" class="category" name=' + category_no + ' type="text" placeholder="Type to add a category">\
                                    <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
@@ -33,7 +53,7 @@ $(window).on('load', function(){
                                     </div>\
                                 </ol>\
                             </span>\
-                         </div>';
+                         </div>';*/
           $("#categories").append(add_box);
      });
 
