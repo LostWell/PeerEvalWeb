@@ -11,7 +11,7 @@
 body{
     background-image: url(images/Path%208.png);
     background-position: bottom;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #ffffff;
@@ -37,15 +37,15 @@ body{
 
 #visualContainer{
     margin: 23vh auto auto auto;
-    padding: 0vh 2vh 0vh 0vh;
-    width: 145vh;
+    width: 72%;
+    text-align: center;
 }
 
 .visual{
     opacity: 0;
     display: inline-block;
-    height: 50vh;
-    width: auto;
+    height: auto;
+    width: 22%;
     margin: auto;
     float: left;
 }
@@ -93,7 +93,7 @@ body{
     float: right;
     display: inline-block;
     opacity: 0;
-    margin: 10vh 0vh 0vh 0vh;
+    margin: 10vh auto;
     text-align: left;
     animation-name: fadeIn;
     animation-duration: 0.7s;
@@ -112,4 +112,119 @@ body{
     font-size: 2.5vh;
     color: #b0b0b0;
     font-weight:100;
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    .visual{
+        width: 22%;
+    }
+    #visualContainer{
+        margin: 23vh auto auto auto;
+        width: 72%;
+    }
+    #tagline{
+        float: right;
+        text-align: left;
+    }
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .visual{
+        width: 22%;
+    }
+    #visualContainer{
+        margin: 23vh auto auto auto;
+        width: 72%;
+    }
+    #tagline{
+        float: right;
+        text-align: left;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .visual{
+        width: 33.3%;
+    }
+    #visualContainer{
+        margin: 15vh auto auto auto;
+        width: 80%;
+    }
+    #tagline{
+        float: none;
+        text-align: center;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .visual{
+        width: 20%;
+    }
+    #visualContainer{
+        margin: 23vh auto auto auto;
+        width: 90%;
+    }
+    #tagline{
+        float: right;
+        text-align: left;
+        margin-left: 5vh;
+    }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .visual{
+        width: 22%;
+    }
+    #visualContainer{
+        margin: 23vh auto auto auto;
+        width: 72%;
+    }
+    #tagline{
+        float: right;
+        text-align: left;
+    }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .visual{
+        width: 33.3%;
+    }
+    #visualContainer{
+        margin: 15vh auto auto auto;
+        width: 80%;
+    }
+    #tagline{
+        float: none;
+        text-align: center;
+    }
 }

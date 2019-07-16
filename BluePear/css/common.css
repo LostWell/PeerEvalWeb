@@ -79,52 +79,156 @@ input[type="submit"]:hover{
     background-color: #124191;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (min-width: 375px) {
-    #content{
-        width: 100%;
-    }
-    .wrapper{
-        padding: 0.5vh 0.5vh 0.5vh 0.5vh;
-    }
-} 
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    #content{
-        width: 100%;
-    }
-    .wrapper{
-        padding: 1vh 1vh 1vh 1vh;
-    }
-} 
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    #content{
-        width: 90%;
-    }
-    .wrapper{
-        padding: 4vh 4vh 4vh 4vh;
-    }
-} 
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    #content{
-        width: 80%;
-    }
-    .wrapper{
-        padding: 7vh 7vh 7vh 7vh;
-    }
-} 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1281px) {
     #content{
         width: 65%;
     }
     .wrapper{
+        border-radius: 2vh;
         padding: 10vh 10vh 10vh 10vh;
+    }
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    #content{
+        width: 75%;
+    }
+    .wrapper{
+        border-radius: 2vh;
+        padding: 7vh 7vh 7vh 7vh;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #content{
+        width: 100%;
+    }
+    .wrapper{
+        border-radius: 0;
+        padding: 5vh 3vh 5vh 3vh;
+    }
+    textarea{
+        font-size: 1.4vh;
+    }
+    .question, .questionItem{
+        font-size: 2vh;
+    }
+    th, td{
+        font-size: 1.6vh;
+    }
+    .option:first-of-type{
+        border-radius: 0;
+        width: 100%;
+        height: 30vh;
+        padding: 4vh;
+        text-align: center;
+    }
+    .option:last-of-type{
+        border-radius: 0;
+        width: 100%;
+        height: 30vh;
+        padding: 4vh;
+        text-align: center;
+    }
+    .wrapperHome{
+        border-radius: 0vh;
+    }
+    .visual{
+        width: 33%;
+    }
+    #visualContainer{
+        margin: 0vh auto auto auto;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    #content{
+        width: 75%;
+    }
+    .wrapper{
+        border-radius: 2vh;
+        padding: 5vh 5vh 5vh 5vh;
+    }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    #content{
+        width: 75%;
+    }
+    .wrapper{
+        border-radius: 2vh;
+        padding: 5vh 5vh 5vh 5vh;
+    }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    #content{
+        width: 100%;
+    }
+    .wrapper{
+        border-radius: 0;
+        padding: 3vh 3vh 3vh 3vh;
+    }
+    textarea{
+        font-size: 1.4vh;
+    }
+    .question, .questionItem{
+        font-size: 2vh;
+    }
+    th, td{
+        font-size: 1.6vh;
+    }
+    .option:first-of-type{
+        border-radius: 0;
+        width: 100%;
+        height: 30vh;
+        padding: 4vh;
+        text-align: center;
+    }
+    .option:last-of-type{
+        border-radius: none;
+        width: 100%;
+        height: 30vh;
+        padding: 4vh;
+        text-align: center;
+    }
+    .wrapperHome{
+        border-radius: 0vh;
+    }
+    .visual{
+        width: 33%;
+    }
+    #visualContainer{
+        margin: 0vh auto auto auto;
     }
 }

@@ -30,26 +30,30 @@
         </div>
         
         <script>
-            var option1 = document.getElementById("option1");
-            var option2 = document.getElementById("option2");
-            option1.addEventListener("mouseover", animateLeft_Over);
-            option2.addEventListener("mouseover", animateRight_Over);
-            option1.addEventListener("mouseout", animate_Out);
-            option2.addEventListener("mouseout", animate_Out);
-            
-            function animateLeft_Over() {
-                option1.style.width = "62%";
-                option2.style.width = "38%";
-            }
-            
-            function animateRight_Over() {
-                option1.style.width = "38%";
-                option2.style.width = "62%";
-            }
-            
-            function animate_Out() {
-                option1.style.width = "50%";
-                option2.style.width = "50%";
+            w = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
+            var targetWidth = 768;
+            if (w > targetWidth) {
+                var option1 = document.getElementById("option1");
+                var option2 = document.getElementById("option2");
+                option1.addEventListener("mouseover", animateLeft_Over);
+                option2.addEventListener("mouseover", animateRight_Over);
+                option1.addEventListener("mouseout", animate_Out);
+                option2.addEventListener("mouseout", animate_Out);
+
+                function animateLeft_Over() {
+                    option1.style.width = "62%";
+                    option2.style.width = "38%";
+                }
+
+                function animateRight_Over() {
+                    option1.style.width = "38%";
+                    option2.style.width = "62%";
+                }
+
+                function animate_Out() {
+                    option1.style.width = "50%";
+                    option2.style.width = "50%";
+                }
             }
             
         </script>
