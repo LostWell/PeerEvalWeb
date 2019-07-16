@@ -7,13 +7,13 @@ $(window).on('load', function(){
      // when the latest textbox category is clicked, new textbox for category will be inserted
      $(document).on('keypress', '#category', function(){
           no_categories++;
-          document.getElementById('category').removeAttribute("id");
+          document.getElementById('category').removeAttribute('id');
           var id_categoryno = 'category' + no_categories;
-          //var id_question = "question" + no_categories;
+          var delete_name = 'delete' + no_categories;
           var add_box = '<div class="set">\
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
-                                   <input id="category" class="category" name=' + id_categoryno + ' type="text" placeholder="Type to add a category">\
+                                   <input id="category" class="category" type="text" placeholder="Type to add a category">\
                                    <label name=' + id_categoryno + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\
@@ -21,8 +21,8 @@ $(window).on('load', function(){
                                     <div id=' + id_categoryno + '>\
                                         <li>\
                                             <span class="item">\
-                                                <input id="question" type="text" placeholder="Type to add a question">\
-                                                <label class="delete"><img src="../images/delete-hover.png"/></label>\
+                                                <input name=' + id_categoryno + ' id="question" type="text" placeholder="Type to add a question">\
+                                                <label id=' + delete_name + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                                             </span>\
                                         </li>\
                                     </div>\
@@ -34,10 +34,17 @@ $(window).on('load', function(){
 
      $(document).on('keypress', '#question', function(){
           var parent_id = '#' + $(this).closest('div').attr('id');
+          var name_category = (this).getAttribute('name');
+          console.log(name_category);
+          var delete_name = 'delete' + name_category[name_category.length - 1];
+          console.log(delete_name);
+          if(document.getElementById(delete_name) != null){
+               document.getElementById(delete_name).removeAttribute('id');
+          }
           var add_box = '<li>\
                               <span class="item">\
-                                   <input id="question" type="text" placeholder="Type to add a question">\
-                                   <label class="delete"><img src="../images/delete-hover.png"/></label>\
+                                   <input name=' + name_category + ' id="question" type="text" placeholder="Type to add a question">\
+                                   <label id=' + delete_name + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                          </li>';
           $(parent_id).append(add_box);
@@ -71,9 +78,9 @@ $(window).on('load', function(){
                }
           }
           else{
-               var check = $(this).closest('div').children('li');
-               //console.log(check.length);
-               if(check.length > 1){
+               var check = (this).getAttribute('id');
+               //console.log(check);
+               if(check == null){
                     $(this).closest('li').remove().children().remove();
                }
                else{
