@@ -14,7 +14,7 @@ $(window).on('load', function(){
                               <span class="categoryContainer">\
                                    <label class="expandable"><img src="../images/down-arrow.png"/></label>\
                                    <input id="category" class="category" name=' + id_categoryno + ' type="text" placeholder="Type to add a category">\
-                                   <label class="delete"><img src="../images/delete-hover.png"/></label>\
+                                   <label name=' + id_categoryno + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\
                                 <ol class="itemList">\
@@ -58,13 +58,16 @@ $(window).on('load', function(){
      $(document).on('click', '.delete', function(){
           var parent_class = $(this).closest('div').attr('class');
           if(parent_class == 'set'){
-               no_categories--;
-               if(no_categories > 0){
+               var checker = $(this).attr('name');
+               checker = checker[checker.length - 1];
+               //console.log(checker);
+               if(checker != no_categories){
+                    //no_categories--;
                     $(this).closest('div').removeClass().addClass('set_remove');
                     $('.set_remove').children().remove();
                }
                else{
-                    no_categories++;
+                    //no_categories++;
                }
           }
           else{
