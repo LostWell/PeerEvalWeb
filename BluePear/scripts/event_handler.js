@@ -5,10 +5,10 @@ var no_categories = 1;
 
 $(window).on('load', function(){
      // when the latest textbox category is clicked, new textbox for category will be inserted
-     $(document).on('keypress', '#category', function(){
+     $('body').on('paste keypress', '#category', function(){
           no_categories++;
 
-           // transfer id to secure that the last added category textbox will not be deleted and on keypress in it, another textbox will appear
+          // transfer id to secure that the last added category textbox will not be deleted and on keypress in it, another textbox will appear
           document.getElementById('category').removeAttribute('id');
           document.getElementById('delete_category').removeAttribute('id');
 
@@ -22,43 +22,21 @@ $(window).on('load', function(){
                                    <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                               <span class="questionContainer">\
-                                   <ol class="itemList">\
-                                        <div id=' + category_no + '>\
-                                             <li>\
-                                                  <span class="item">\
-                                                       <input class=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
-                                                       <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
-                                                  </span>\
-                                             </li>\
-                                        </div>\
+                                   <ol class="itemList" id=' + category_no + '>\
+                                        <li>\
+                                             <span class="item">\
+                                                  <input class=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
+                                                  <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
+                                             </span>\
+                                        </li>\
                                    </ol>\
                               </span>\
                          </div>';
-
-          /*var add_box = '<div class="set">\
-                              <span class="categoryContainer">\
-                                   <label class="expandable expanded"></label>\
-                                   <input id="category" class="category" name=' + category_no + ' type="text" placeholder="Type to add a category">\
-                                   <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>\
-                              </span>\
-                              <span class="questionContainer">\
-                                <ol class="itemList">\
-                                    <div id=' + category_no + '>\
-                                        <li>\
-                                            <span class="item">\
-                                                <input class=' + category_no + ' id="question" type="text" placeholder="Type to add a question">\
-                                                <label id=' + delete_question + ' class="delete"><img src="../images/delete-hover.png"/></label>\
-                                            </span>\
-                                        </li>\
-                                    </div>\
-                                </ol>\
-                            </span>\
-                         </div>';*/
-          $("#categories").append(add_box);
+          $("#categoriesContainer").append(add_box);
      });
 
-     $(document).on('keypress', '#question', function(){
-          var id_category = '#' + $(this).closest('div').attr('id');
+     $('body').on('paste keypress', '#question', function(){
+          var id_category = '#' + $(this).closest('ol').attr('id');
           var name_category = (this).getAttribute('class'); // to classify later on what categories do the questions belong
           console.log(name_category);
           var delete_name = 'delete' + name_category[name_category.length - 1];
@@ -73,7 +51,7 @@ $(window).on('load', function(){
           $(this).removeAttr('id');
      });
 
-     $(document).on('keypress', '#participant', function(){
+     $('body').on('paste keypress', '#participant', function(){
           document.getElementById('participant').removeAttribute("id");
           var add_box = '<li>\
                               <span class="item">\
@@ -84,7 +62,7 @@ $(window).on('load', function(){
           $("#participants").append(add_box);     
      });
 
-     $(document).on('click', '.delete', function(){
+     $('body').on('click', '.delete', function(){
           var parent_class = $(this).closest('div').attr('class');
           if(parent_class == 'set'){
                var check = (this).getAttribute('id');

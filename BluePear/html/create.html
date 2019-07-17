@@ -32,7 +32,7 @@
                 <div id="form">
                     <br/>
                     <h3>Questions</h3>
-                    <div id="categories">
+                    <div id="categoriesContainer">
                         <div class="set">
                             <span class="categoryContainer">
                                 <label class="expandable expanded"></label>
@@ -40,15 +40,13 @@
                                 <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>
                             </span>
                             <span class="questionContainer">
-                                <ol class="itemList">
-                                    <div id="category1">
-                                        <li>
-                                            <span class="item">
-                                                <input class="category1" id="question" type="text" placeholder="Type to add a question">
-                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
-                                            </span>
-                                        </li>
-                                    </div>
+                                <ol class="itemList" id="category1">
+                                    <li>
+                                        <span class="item">
+                                            <input class="category1" id="question" type="text" placeholder="Type to add a question">
+                                            <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                        </span>
+                                    </li>
                                 </ol>
                             </span>
                         </div>
@@ -60,15 +58,15 @@
                         <div class="set">
                             <span class="categoryContainer">
                                 <label class="expandable expanded"></label>
-                                <input id="category" class="category" name="category1" type="text" placeholder="Type to add a team">
-                                <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>
+                                <input id="team" class="team" name="team1" type="text" placeholder="Type to add a team">
+                                <label id="delete_team" class="delete"><img src="../images/delete-hover.png"/></label>
                             </span>
                             <span class="questionContainer">
                                 <ol class="itemList">
-                                    <div id="category1">
+                                    <div id="team1">
                                         <li>
                                             <span class="item">
-                                                <input class="category1" id="question" type="text" placeholder="Type to add a member">
+                                                <input class="team1" id="question" type="text" placeholder="Type to add a member">
                                                 <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
                                             </span>
                                         </li>

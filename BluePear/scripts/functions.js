@@ -2,14 +2,14 @@
 
 /* MANAGER SIDE FUNCTIONS */
 
-// variables used
-var questionnaire = $JExcel.new("Arial 10");
-var categories = [];
-var input_filename = [];
-
 // Generate Questionnaire to excel file
 function create_questions(){
      console.log("Generating Questions...");
+
+     // variables used
+     var questionnaire = $JExcel.new("Arial 10");
+     var categories = [];
+     var input_filename = [];
 
 
      if(prompt_final() == true){
@@ -18,16 +18,25 @@ function create_questions(){
           console.log('Here!');
           console.log(filename);
           var category_label = getCategories();
-          addSheetsNames(questionnaire, categories);
 
-          categories.splice(0, 1);
-          addValues_in_Sheet(questionnaire, 0, categories);          
+          categories.splice(categories.length - 1, 1);
+          if(no_input(categories) == false){
+               addSheetsNames(questionnaire, categories);
+               categories.splice(0, 1);
+               addValues_in_Sheet(questionnaire, 0, categories);          
 
-          for(var i = 0; i < categories.length; i++){
-               var questions = getQuestions(category_label[i]);
-               addValues_in_Sheet(questionnaire, i+1, questions);
+               for(var i = 0; i < categories.length; i++){
+                    var questions = getQuestions(category_label[i]);
+                    remove_blank_input(questions);
+                    addValues_in_Sheet(questionnaire, i+1, questions);
+               }
+               questionnaire.generate(filename);
           }
-          questionnaire.generate(filename);
+          else{
+               alert('Blank category!');
+               categories = [];
+               input_filename = [];
+          }
      }
 }
 
@@ -64,11 +73,10 @@ function addValues_in_Sheet(workbook, SheetNo, values){
 function get_InputValues(element_name, variable_name){
      var input = document.getElementsByClassName(element_name);
      var names = [];
+
      for(var i = 0; i < input.length; i++){
-          if(input[i].value != '')
-               variable_name.push(input[i].value);
-          if(input[i].name != null)
-               names.push(input[i].name);
+          variable_name.push(input[i].value);
+          names.push(input[i].name);
      }
      var check = store_value(element_name, variable_name);
      if(check == true){
@@ -92,6 +100,24 @@ function get_value(name){
      return value.split(",");
 }
 
+// if a variable contains a blank element, it will return true
+function no_input(variable_name){
+     for(var i = 0; i < variable_name.length; i++){
+          if(variable_name[i] == '')
+               return true;
+     }
+
+     return false;
+}
+
+// removes blank input in the variable
+function remove_blank_input(variable_name){
+     for(var i = 0; i < variable_name.length; i++){
+          if(variable_name[i] == '')
+               variable_name.splice(i, 1);
+     }
+}
+
 // prompt user if all inputs are already final
 function prompt_final(){
      var note = confirm("Are you sure?");
@@ -99,3 +125,6 @@ function prompt_final(){
           return true;
      return false;
 }
+
+/* PEER SIDE FUNCTIONS */
+
