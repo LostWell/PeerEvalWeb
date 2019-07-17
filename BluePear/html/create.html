@@ -82,9 +82,9 @@
             </div>
         </div>
         <script>
-            var expandable = document.getElementsByClassName("expandable");
-            for(var i=0; i<expandable.length; i++){
-                expandable[i].addEventListener("click", function addExpandedEvent(){
+            $(window).on('load', function(){
+                $(document).on('click', '.expandable', function(){
+                    console.log('Here!');
                     if(this.classList.contains("expanded")){
                         this.parentElement.nextElementSibling.style.display = "none";
                         this.classList.add("collapsed");
@@ -94,9 +94,8 @@
                         this.classList.add("expanded");
                         this.classList.remove("collapsed");
                     }
-                    this.addEventListener("click", addExpandedEvent);
                 });
-            }
+            });
         </script>
     </body>
 </html>
