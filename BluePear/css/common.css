@@ -161,6 +161,17 @@ input[type="submit"]:hover{
     #toolbar{
         display: block;
     }
+    .categoryContainer .delete{
+        opacity: 1;
+        visibility: visible;
+    }
+    .item .delete{
+        opacity: 1;
+        visibility: visible;
+    }
+    #sublogo{
+        margin: 0vh 0vh 0vh 1.5vh;
+    }
 }
 
 /* 
@@ -244,5 +255,16 @@ input[type="submit"]:hover{
     }
     #toolbar{
         display: block;
+    }
+    .categoryContainer .delete{
+        opacity: 1;
+        visibility: visible;
+    }
+    .item .delete{
+        opacity: 1;
+        visibility: visible;
+    }
+    #sublogo{
+        margin: 0vh 0vh 0vh 1.5vh;
     }
 }

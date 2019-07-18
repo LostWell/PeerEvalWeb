@@ -30,6 +30,7 @@ body{
     margin: 0vh auto 5vh auto;
     width: 80%;
     height: 5vh;
+    color: #124191;
 }
 
 #cardTitle {
@@ -119,10 +120,12 @@ input[type="text"]:focus {
 
 .categoryContainer .delete{
     opacity: 0;
+    visibility: hidden;
 }
 
 .categoryContainer:hover .delete{
     opacity: 1;
+    visibility: visible;
 }
 
 .category{
@@ -154,10 +157,12 @@ input[type="text"]:focus {
 
 .item .delete{
     opacity: 0;
+    visibility: hidden;
 }
 
 .item:hover .delete{
     opacity: 1;
+    visibility: visible;
 }
 
 .item input {
