@@ -1,18 +1,5 @@
 body{
 }
-    
-.headline{
-    margin:auto;
-    color: #000000;
-    font-size: 4vh;
-    width: 80%;
-}
-
-#content{
-    text-align: center;
-    width: 65%;
-    margin:  8vh auto auto auto;
-}
 
 .wrapperHome{
     margin: 7vh auto auto auto;

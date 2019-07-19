@@ -1,0 +1,137 @@
+body{
+
+}
+
+.wrapper{
+    width: 40%;
+}
+
+input[type="text"], input[type="password"]{
+    display: block;
+    margin: auto auto 3vh auto;
+    padding: 2vh;
+    border-radius: 2vh;
+    border: 0.2vh solid #c0c0c0;
+    outline: none;
+    transition: 0.3s;
+    font-size: 2vh;
+    width: 30vh;
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+    border: 0.2vh solid #124191;
+}
+
+h3{
+    margin: 0;
+    padding: 0;
+}
+
+#titlebar{
+    margin-bottom: 5vh;
+}
+
+#prompt{
+    font-size: 2vh;
+}
+
+#showpass{
+    font-size: 2vh;
+}
+
+#showcheck{
+    margin: 0vh 1vh 0vh 0vh
+}
+
+input[type="submit"]{
+    margin: 4vh auto;
+}
+
+label{
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    .wrapper{
+        width: 60%;
+    }
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    #showcheck{  
+    -ms-transform: scale(0.5); /* IE */
+    -moz-transform: scale(0.5); /* FF */
+    -webkit-transform: scale(0.5); /* Safari and Chrome */
+    -o-transform: scale(0.5); /* Opera */
+    transform: scale(0.5);
+    }
+    .wrapper{
+        width: 60%;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #showcheck{  
+    -ms-transform: scale(2.5); /* IE */
+    -moz-transform: scale(2.5); /* FF */
+    -webkit-transform: scale(2.5); /* Safari and Chrome */
+    -o-transform: scale(2.5); /* Opera */
+    transform: scale(2.5);
+    }
+    .wrapper{
+        width: 100%;
+    }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    #showcheck{  
+    -ms-transform: scale(2.5); /* IE */
+    -moz-transform: scale(2.5); /* FF */
+    -webkit-transform: scale(2.5); /* Safari and Chrome */
+    -o-transform: scale(2.5); /* Opera */
+    transform: scale(2.5);
+    }
+    .wrapper{
+        width: 100%;
+    }
+
+}

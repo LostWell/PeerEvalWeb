@@ -9,27 +9,27 @@
 }
 
 body{
-    background-image: url(images/Path%208.png);
-    background-position: bottom;
+    background-image: url(images/dive.png);
+    background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #ffffff;
 }
 
-#logo{
+.logo{
     margin: 0vh;
     font-family: Nokia;
     font-weight: 100;
     font-size: 5vh;
-    float: left;
-    color: #124191;
+    color: #ffffff;
+    display: inline-block;
 }
 
-#sublogo{
+.sublogo{
     display: inline-block;
-    margin: 0.8vh 0vh 0vh 1.5vh;
-    color: #b0b0b0;
+    margin: 0vh 0vh 0vh 1.5vh;
+    color: #ececec;
     font-family: NokiaPureText-Light;
     font-weight: 600;
     font-size: 3vh;
@@ -42,8 +42,7 @@ body{
 }
 
 .visual{
-    opacity: 0;
-    display: inline-block;
+    display: none;
     height: auto;
     width: 22%;
     margin: auto;
@@ -90,8 +89,8 @@ body{
 }
 
 #tagline{
-    float: right;
-    display: inline-block;
+    float: left;
+    display: block;
     opacity: 0;
     margin: 10vh auto;
     text-align: left;
@@ -110,7 +109,7 @@ body{
 #tagline h4{
     margin: 3vh 0vh 6vh;
     font-size: 2.5vh;
-    color: #b0b0b0;
+    color: #ffffff;
     font-weight:100;
 }
 
@@ -124,11 +123,11 @@ body{
         width: 22%;
     }
     #visualContainer{
-        margin: 23vh auto auto auto;
+        margin: 30vh auto auto auto;
         width: 72%;
     }
     #tagline{
-        float: right;
+        float: left;
         text-align: left;
     }
 }
@@ -143,11 +142,11 @@ body{
         width: 22%;
     }
     #visualContainer{
-        margin: 23vh auto auto auto;
+        margin: 30vh auto auto auto;
         width: 72%;
     }
     #tagline{
-        float: right;
+        float: left;
         text-align: left;
     }
 }
@@ -162,7 +161,7 @@ body{
         width: 33.3%;
     }
     #visualContainer{
-        margin: 15vh auto auto auto;
+        margin: 35vh auto auto auto;
         width: 90%;
     }
     #tagline{
@@ -182,11 +181,11 @@ body{
         width: 20%;
     }
     #visualContainer{
-        margin: 23vh auto auto auto;
+        margin: 30vh auto auto auto;
         width: 90%;
     }
     #tagline{
-        float: right;
+        float: left;
         text-align: left;
         margin-left: 5vh;
     }
@@ -206,7 +205,7 @@ body{
         width: 72%;
     }
     #tagline{
-        float: right;
+        float: left;
         text-align: left;
     }
 }
@@ -221,7 +220,7 @@ body{
         width: 33.3%;
     }
     #visualContainer{
-        margin: 15vh auto auto auto;
+        margin: 35vh auto auto auto;
         width: 80%;
     }
     #tagline{
