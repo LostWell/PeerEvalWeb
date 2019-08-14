@@ -9,6 +9,11 @@ h3{
     padding-bottom: 5vh;
 }
 
+#cardTitle{
+    text-align: center;
+    width: 70%;
+}
+
 .set label{
     display: table-cell;
     vertical-align: middle;

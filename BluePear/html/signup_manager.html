@@ -44,7 +44,31 @@
                 var pass = $("#pass").val();
                 var cpass = $("#cpass").val();
                 if (uname == "" || pass == "" || cpass == ""){
-                    $("p").css("visibility", "visible");
+                    $("#prompt").text("Please fill in the required fields");
+                    $("#prompt").css("visibility", "visible");
+                } else if (pass != cpass){
+                    $("#prompt").text("Passwords do not match");
+                    $("#prompt").css("visibility", "visible");
+                } else if (pass.length < 8){
+                    $("#prompt").text("Password must be at least 8 characters long");
+                    $("#prompt").css("visibility", "visible");
+                }else{
+                    $("#prompt").css("visibility", "hidden");
+                    $.post("../php/signup.php",
+                    {
+                        username: uname,
+                        password: pass,
+                        confirm: cpass
+                    },
+                    function(data, status){
+                        if(data == "false"){
+                            $("#prompt").text("Username is already taken");
+                            $("#prompt").css("visibility", "visible");
+                        } else {
+                            alert("Successfully created user");
+                            window.location.replace("signin_manager.html");
+                        }
+                    });
                 }
             });
         </script>
