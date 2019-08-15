@@ -1,9 +1,4 @@
 @font-face{
-    font-family: Nokia;
-    src: url('../fonts/NokiaKokia.ttf');
-}
-
-@font-face{
     font-family: NokiaPureText-Light;
     src: url('../fonts/NokiaPureText-Light.ttf');
 }
@@ -16,11 +11,9 @@ nav{
 }
 
 #logo{
-    margin: 0vh;
-    color: #124191;
-    font-family: Nokia;
-    font-weight: 100;
-    font-size: 3vh;
+    width: 15vh;
+    padding-top: 0.3vh;
+    height: auto;
     float: left;
 }
 
@@ -30,5 +23,5 @@ nav{
     color: #c0c0c0;
     font-family: NokiaPureText-Light;
     font-weight: 600;
-    font-size: 2.5vh;
+    font-size: 2.2vh;
 }

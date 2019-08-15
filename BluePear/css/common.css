@@ -14,15 +14,22 @@
 }
 
 html{
-    height: 100%;
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ), url(../images/dive-blur.png);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #124191;
+    min-height: 100%;
 }
 
 body{
+    min-height: 100%;
     margin: 0;
     font-family: NokiaPureText-Light;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #124191;
 }
 
 a.button{
@@ -52,6 +59,7 @@ a.button:hover{
     font-family: NokiaPureHeadline_Ultralight;
     font-weight: 100;
     color: #ffffff;
+    width: 80%;
 }
 
 .text{
@@ -92,7 +100,7 @@ input[type="submit"]:hover{
 }
 
 .wrapper{
-    margin:  5vh auto auto auto;
+    margin:  5vh auto 10vh auto;
     display: inline-block;
     background-color: #ffffff;
     border-radius: 2vh 2vh 0vh 0vh;

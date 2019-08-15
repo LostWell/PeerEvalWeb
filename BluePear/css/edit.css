@@ -1,7 +1,14 @@
 body{
 }
 
+#form{
+    margin: 0 auto;
+    text-align: left;
+    width: 95%;
+}
+
 h3{
+    text-align: left;
     font-size: 2.7vh;
 }
 

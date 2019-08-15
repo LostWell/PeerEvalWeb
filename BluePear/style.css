@@ -1,38 +1,42 @@
 @font-face{
-    font-family: Nokia;
-    src: url('fonts/NokiaKokia.ttf');
-}
-
-@font-face{
     font-family: NokiaPureText-Light;
     src: url('fonts/NokiaPureText-Light.ttf');
 }
 
-body{
-    background-image: url(images/dive.png);
+html{
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1)
+    ), url(images/dive.png);
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #ffffff;
+    background-color: #124191;
+    min-height: 100%;
 }
 
-.logo{
-    margin: 0vh;
-    font-family: Nokia;
-    font-weight: 100;
-    font-size: 5vh;
-    color: #ffffff;
+body{
+    min-height: 100%;
+    margin: 0;
+    font-family: NokiaPureText-Light;
+}
+
+#logoFeature{
+    width: 22vh;
+    height: auto;
     display: inline-block;
+    vertical-align: top;
 }
 
-.sublogo{
+#sublogoFeature{
     display: inline-block;
     margin: 0vh 0vh 0vh 1.5vh;
     color: #ececec;
     font-family: NokiaPureText-Light;
     font-weight: 600;
     font-size: 3vh;
+    vertical-align: top;
 }
 
 #visualContainer{

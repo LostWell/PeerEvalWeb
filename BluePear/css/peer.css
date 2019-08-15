@@ -10,6 +10,10 @@ body{
     font-size: 2vh;
 }
 
+.questionItem{
+    padding-bottom: 2vh;
+}
+
 table{
     font-size: 2vh;
     width: 100%;
@@ -25,13 +29,13 @@ td, th{
 th{
     padding: 2vh 1vh;
     width: 20%;
-    background-color: #124191;
+    background-color: #68717A;
     color: white;
     border-radius: 2vh 0vh 0vh 2vh;
 }
 
 textarea{
-    font-size: 1.8vh;
+    font-size: 1.5vh;
     margin-top: 1vh;
     width: 90%;
     padding: 1vh 2vh;
@@ -74,7 +78,7 @@ input[type="radio"]{
 select{
     display: block;
     text-align: left;
-    padding: 1vh 3vh;
+    padding: 2vh 4vh 2vh 1.5vh;
     margin: auto;
     outline: none;
     font-size: 3vh;
@@ -86,6 +90,20 @@ select{
     background: url(../images/down-arrow-list.png) no-repeat right;
     background-size: 2.5vh;
     cursor: pointer;
+}
+
+select:hover{
+    color: #124191;
+}
+
+select:focus{
+    background: url(../images/up-arrow-list.png) no-repeat right;
+    background-size: 2.5vh;
+}
+
+option{
+    font-size: 2vh;
+    color: #a0a0a0;
 }
 
 .input{

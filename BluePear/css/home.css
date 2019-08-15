@@ -1,8 +1,14 @@
 body{
 }
 
+.headline{
+    color: #ffffff;
+    margin-top: 6vh !important;
+    width: 70%;
+}
+
 .wrapperHome{
-    margin: 7vh auto auto auto;
+    margin: 5vh auto auto auto;
     display: inline-block;
     background-color: #ffffff;
     border-radius: 2vh 2vh 2vh 2vh;
