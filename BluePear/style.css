@@ -7,7 +7,7 @@ html{
     background-image: linear-gradient(
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.1)
-    ), url(images/dive.png);
+    ), url(images/dive.jpg);
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
