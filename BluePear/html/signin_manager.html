@@ -30,7 +30,7 @@
                     <h3>Sign In</h3>
                 </div>
                 <div id="form">
-                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Username" id="uname">
                     <input type="password" placeholder="Password" id="pass" name="password" minlength="8" required>
                     <label id="showpass"><input type="checkbox" id="showcheck">Show Password</label>
                     <p style="color: red; visibility: hidden;" id="prompt">Invalid Username or Password</p>
@@ -44,6 +44,32 @@
                     document.getElementById("pass").type = "text";
                 } else {
                     document.getElementById("pass").type = "password";
+                }
+            });
+            
+            $("input[type=\"submit\"]").click(function(){
+                var uname = $("#uname").val();
+                var pass = $("#pass").val();
+                if (uname == "" || pass == ""){
+                    $("#prompt").text("Please fill in the required fields");
+                    $("#prompt").css("visibility", "visible");
+                } else{
+                    $("#prompt").css("visibility", "hidden");
+                    $.post("../php/connect.php",
+                    {
+                        job: "signin",
+                        username: uname,
+                        password: pass
+                    },
+                    function(data, status){
+                        if(data == "false"){
+                            $("#prompt").text("Invalid username or password");
+                            $("#prompt").css("visibility", "visible");
+                        } else {
+                            localStorage.setItem("username", uname);
+                            window.location.replace("manager.html");
+                        }
+                    });
                 }
             });
         </script>

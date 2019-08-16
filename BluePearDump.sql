@@ -38,6 +38,7 @@ CREATE TABLE `managers` (
 
 LOCK TABLES `managers` WRITE;
 /*!40000 ALTER TABLE `managers` DISABLE KEYS */;
+INSERT INTO `managers` VALUES ('Tanja','12121212');
 /*!40000 ALTER TABLE `managers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,6 +53,7 @@ CREATE TABLE `peers` (
   `username` varchar(128) NOT NULL,
   `password` varchar(64) NOT NULL,
   `savefile` mediumblob,
+  `eval_status` enum('not started','unfinished','finished') NOT NULL DEFAULT 'not started',
   PRIMARY KEY (`username`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -77,6 +79,7 @@ CREATE TABLE `questionnaires` (
   `filename` varchar(200) NOT NULL,
   `teams` varchar(10000) NOT NULL,
   `file` mediumblob NOT NULL,
+  `status` enum('inactive','active') NOT NULL DEFAULT 'inactive',
   PRIMARY KEY (`filename`),
   UNIQUE KEY `filename_UNIQUE` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -101,10 +104,8 @@ DROP TABLE IF EXISTS `teams`;
 CREATE TABLE `teams` (
   `teamname` varchar(128) NOT NULL,
   `members` varchar(10000) NOT NULL,
-  `filename` varchar(200) NOT NULL,
   PRIMARY KEY (`teamname`),
-  UNIQUE KEY `teamname_UNIQUE` (`teamname`),
-  UNIQUE KEY `filename_UNIQUE` (`filename`)
+  UNIQUE KEY `teamname_UNIQUE` (`teamname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,4 +127,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-19  9:28:58
+-- Dump completed on 2019-08-16 19:02:38

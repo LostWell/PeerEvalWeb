@@ -44,7 +44,7 @@ h3{
 }
 
 input[type="submit"]{
-    margin: 4vh auto;
+    margin: 4vh auto 0vh auto;
 }
 
 label{

@@ -27,45 +27,48 @@
             <h1 class="headline">Manager's Page</h1>
             <div class="wrapper">
                 <div id="titlebar">
-                    <h3>Sign Up</h3>
+                    <h3>Change Password</h3>
                 </div>
                 <div id="form">
-                    <input type="text" placeholder="Username" id="uname">
-                    <input type="password" placeholder="Password" id="pass" name="password" minlength="8" required>
-                    <input type="password" placeholder="Confirm Password" id="cpass" name="password" minlength="8" required>
-                    <p style="color: red; visibility: hidden;" id="prompt">Please provide values for the required fields</p>
+                    <input type="password" placeholder="Old Password" id="oldpass" name="password" minlength="8" required>
+                    <input type="password" placeholder="New Password" id="pass" name="password" minlength="8" required>
+                    <input type="password" placeholder="Confirm New Password" id="cpass" name="password" minlength="8" required>
+                    <p style="color: red; visibility: hidden;" id="prompt">Please fill in all fields</p>
                     <input type="submit" value="Submit">
                 </div>
             </div>
         </div>
         <script>
             $("input[type=\"submit\"]").click(function(){
-                var uname = $("#uname").val();
+                var oldpass = $("#oldpass").val();
                 var pass = $("#pass").val();
                 var cpass = $("#cpass").val();
-                if (uname == "" || pass == "" || cpass == ""){
-                    $("#prompt").text("Please fill in the required fields");
-                    $("#prompt").css("visibility", "visible");
-                } else if (pass != cpass){
-                    $("#prompt").text("Passwords do not match");
+                if (oldpass == "" || pass == "" || cpass == ""){
+                    $("#prompt").text("Please fill in all fields");
                     $("#prompt").css("visibility", "visible");
                 } else if (pass.length < 8){
                     $("#prompt").text("Password must be at least 8 characters long");
                     $("#prompt").css("visibility", "visible");
-                }else{
+                } else if (pass != cpass){
+                    $("#prompt").text("Please confirm your new password");
+                    $("#prompt").css("visibility", "visible");
+                } else{
                     $("#prompt").css("visibility", "hidden");
-                    $.post("../php/signup.php",
+                    $.post("../php/connect.php",
                     {
-                        username: uname,
-                        password: pass,
-                        confirm: cpass
+                        job: "change",
+                        username: localStorage.getItem("username"),
+                        oldpassword: oldpass,
+                        newpassword: pass
                     },
                     function(data, status){
                         if(data == "false"){
-                            $("#prompt").text("Username is already taken");
+                            $("#prompt").text("Incorrect password");
                             $("#prompt").css("visibility", "visible");
                         } else {
-                            alert("Successfully created user");
+                            alert(data);
+                            alert("Successfully changed password");
+                            localStorage.removeItem("username");
                             window.location.replace("signin_manager.html");
                         }
                     });

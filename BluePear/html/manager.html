@@ -44,6 +44,12 @@
             </div>
         </div>
         <script>
+            if (localStorage.getItem("username") === null){
+                window.location.replace("home.html");
+            } else{
+                var username = localStorage.getItem("username");
+                document.getElementsByClassName("headline")[0].textContent = "Welcome, ".concat(username);
+            }
         </script>
     </body>
 </html>
