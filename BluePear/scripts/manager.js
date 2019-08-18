@@ -9,28 +9,57 @@ function create_questions(){
      // variables used
      var questionnaire = $JExcel.new("Arial 10");
      var categories = [];
-     var input_filename = [];
+     var teams = [];
+     var filename = [];
 
 
      if(prompt_final() == true){
-          get_InputValues('questionnaire', input_filename);
-          var filename = input_filename[0] + '.xlsx';
-          console.log('Here!');
-          console.log(filename);
+          get_InputValues('questionnaire', filename);
           var category_label = getCategories();
+          var team_label = getTeams();
 
+          categories = get_value('category');
+          teams = get_value('team');
+
+          // to entry from remove automatically added textbox
           categories.splice(categories.length - 1, 1);
-          if(no_input(categories) == false){
-               addSheetsNames(questionnaire, categories);
-               categories.splice(0, 1);
-               addValues_in_Sheet(questionnaire, 0, categories);          
+          teams.splice(teams.length - 1, 1);
+          if((no_input(categories) == false) && (no_input(teams) == false) && (filename != '') && (categories.length != 1)){
+               addSheetsNames(questionnaire, categories.concat(teams));
 
-               for(var i = 0; i < categories.length; i++){
-                    var questions = getQuestions(category_label[i]);
-                    remove_blank_input(questions);
-                    addValues_in_Sheet(questionnaire, i+1, questions);
+               
+               categories.splice(0, 1);
+               teams.splice(0, 1);
+               console.log(teams);
+               console.log(category_label);
+
+               addValues_in_Sheet(questionnaire, 0, categories);          
+               for(var i = 0; i <= (categories.length + teams.length); i++){
+                    console.log(i);
+                    if(i < categories.length){
+                         var questions = getQuestions(category_label[i]);
+                         remove_blank_input(questions);
+                         //console.log(questions);
+                         addValues_in_Sheet(questionnaire, i+1, questions);
+                    }
+                    else if(i == categories.length){
+                         console.log(categories.length + teams.length);
+                         addValues_in_Sheet(questionnaire, i+1, teams);
+                    }
+                    else{
+                         console.log(i - categories.length - 1);
+                         var participants = getParticipants(team_label[i - categories.length - 1]);
+                         console.log(participants);
+                         remove_blank_input(participants);
+                         addValues_in_Sheet(questionnaire, i+1, participants);
+                    }
                }
-               questionnaire.generate(filename);
+               questionnaire.generate(filename + '.xlsx');
+          }
+          else if(filename == ''){
+               alert('Blank filename!');
+               categories = [];
+               input_filename = [];
           }
           else{
                alert('Blank category!');
@@ -44,6 +73,7 @@ function create_questions(){
 function getCategories(){
      categories = ['list of categories'];
      category_label = get_InputValues('category', categories);
+
      return category_label;
 }
 
@@ -53,6 +83,22 @@ function getQuestions(category_no){
      get_InputValues(category_no, questions);
      
      return questions;
+}
+
+// get team names
+function getTeams(){
+     teams = ['list of teams'];
+     team_label = get_InputValues('team', teams);
+
+     return team_label;
+}
+
+// get team participants
+function getParticipants(team_no){
+     var participants = [];
+     get_InputValues(team_no, participants);
+
+     return participants;
 }
 
 // add names of sheets (category)
@@ -79,10 +125,10 @@ function get_InputValues(element_name, variable_name){
           names.push(input[i].name);
      }
      var check = store_value(element_name, variable_name);
-     if(check == true){
+     /*if(check == true){
           console.log("finished getting inputs");
           console.log(get_value(element_name));
-     }
+     }*/
      return names;
 }
 
@@ -102,6 +148,8 @@ function get_value(name){
 
 // if a variable contains a blank element, it will return true
 function no_input(variable_name){
+     if(!variable_name.length)
+          return true;
      for(var i = 0; i < variable_name.length; i++){
           if(variable_name[i] == '')
                return true;
@@ -125,6 +173,3 @@ function prompt_final(){
           return true;
      return false;
 }
-
-/* PEER SIDE FUNCTIONS */
-

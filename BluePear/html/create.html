@@ -14,7 +14,7 @@
         <script type="text/javascript" src="../scripts/myexcel.js"></script>
         <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
         <script type="text/javascript" src="../scripts/event_handler.js"></script>
-        <script type="text/javascript" src="../scripts/functions.js"></script>
+        <script type="text/javascript" src="../scripts/manager.js"></script>
     </head>
     <body>
         <nav>
@@ -40,14 +40,16 @@
                                 <label id="delete_category" class="delete"><img src="../images/delete-hover.png"/></label>
                             </span>
                             <span class="questionContainer">
-                                <ol class="itemList" id="category1">
-                                    <li>
-                                        <span class="item">
-                                            <input class="category1" id="question" type="text" placeholder="Type to add a question">
-                                            <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
-                                        </span>
-                                    </li>
-                                </ol>
+                                <div class="list_questions">
+                                    <ol class="itemList" id="category1">
+                                        <li>
+                                            <span class="item">
+                                                <input class="category1" id="question" type="text" placeholder="Type to add a question">
+                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                            </span>
+                                        </li>
+                                    </ol>
+                                </div>
                             </span>
                         </div>
                     </div>
@@ -58,20 +60,20 @@
                         <div class="set">
                             <span class="categoryContainer">
                                 <label class="expandable expanded"></label>
-                                <input id="team" class="team category" name="team1" type="text" placeholder="Type to add a team">
+                                <input id="team" class="team" name="team1" type="text" placeholder="Type to add a team">
                                 <label id="delete_team" class="delete"><img src="../images/delete-hover.png"/></label>
                             </span>
                             <span class="questionContainer">
-                                <ol class="itemList">
-                                    <div id="team1">
+                                <div class="list_participants">
+                                    <ol class="itemList" id="team1">
                                         <li>
                                             <span class="item">
-                                                <input class="team1" id="question" type="text" placeholder="Type to add a member">
-                                                <label id="delete1" class="delete"><img src="../images/delete-hover.png"/></label>
+                                                <input class="team1" id="participant" type="text" placeholder="Type to add a member">
+                                                <label id="delete_btn" class="delete"><img src="../images/delete-hover.png"/></label>
                                             </span>
                                         </li>
-                                    </div>
-                                </ol>
+                                    </ol>
+                                </div>
                             </span>
                         </div>
                     </div>
