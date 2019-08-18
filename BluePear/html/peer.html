@@ -11,11 +11,11 @@
 
         <script type="text/javascript" src="../scripts/jszip.js"></script>
         <script type="text/javascript" src="../scripts/FileSaver.js"></script>
-        <script type="text/javascript" src="../scripts/xlsx.js"></script>
+        <script type="text/javascript" src="../scripts/xlsx.full.min.js"></script>
         <script type="text/javascript" src="../scripts/myexcel.js"></script>
         <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
-        <script type="text/javascript" src="../scripts/event_handler.js"></script>
-        <script type="text/javascript" src="../scripts/functions.js"></script>
+
+        <script type="text/javascript" src="../scripts/peer.js"></script>
     </head>
     <body>
         <nav>
@@ -27,20 +27,23 @@
         <div id="content">
             <h1 class="headline">Peer Evaluation</h1>
             <div class="wrapper">
+
+                <!--ito lang ung part dapat na kukunin na ung excel file sa database kaso hindi ko pa napag-aralan sorry :( -->
+                <input type="file" id="fileUpload" />
+                <input type="button" id="upload" value="Upload" />
+                <hr />
+                <div id="dvExcel"></div>
+
                 <div id="questionnaire">
                     <div class="set">
-                        <select name="categories">
-                            <option value="category1">Category 1</option>
-                            <option value="category2">Category 2</option>
-                            <option value="category3">Category 3</option>
-                            <option value="category4">Category 4</option>
+                        <select class="categories">
                         </select>
                         <ol class="evaluation">
                             <li class="questionItem">
                                 <h4 class="question">Question</h4>
                                 <table class="input">
                                     <tr>
-                                        <th rowspan="2">Maucesa, Pamela</th>
+                                        <th rowspan="2">Peer Name</th>
                                         <td class="ratings">
                                             <label class="rating"><input type="radio" name="rating01">1</label>
                                             <label class="rating"><input type="radio" name="rating01">2</label>
@@ -55,151 +58,9 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Orbe, Raphael</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating02">1</label>
-                                            <label class="rating"><input type="radio" name="rating02">2</label>
-                                            <label class="rating"><input type="radio" name="rating02">3</label>
-                                            <label class="rating"><input type="radio" name="rating02">4</label>
-                                            <label class="rating"><input type="radio" name="rating02">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Divina, Joseph</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating03">1</label>
-                                            <label class="rating"><input type="radio" name="rating03">2</label>
-                                            <label class="rating"><input type="radio" name="rating03">3</label>
-                                            <label class="rating"><input type="radio" name="rating03">4</label>
-                                            <label class="rating"><input type="radio" name="rating03">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="questionItem">
-                                <h4 class="question">Question</h4>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Manongsong, Xyrus</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating11">1</label>
-                                            <label class="rating"><input type="radio" name="rating11">2</label>
-                                            <label class="rating"><input type="radio" name="rating11">3</label>
-                                            <label class="rating"><input type="radio" name="rating11">4</label>
-                                            <label class="rating"><input type="radio" name="rating11">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Dela Cruz, Jimalene</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating12">1</label>
-                                            <label class="rating"><input type="radio" name="rating12">2</label>
-                                            <label class="rating"><input type="radio" name="rating12">3</label>
-                                            <label class="rating"><input type="radio" name="rating12">4</label>
-                                            <label class="rating"><input type="radio" name="rating12">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Peer Name</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating13">1</label>
-                                            <label class="rating"><input type="radio" name="rating13">2</label>
-                                            <label class="rating"><input type="radio" name="rating13">3</label>
-                                            <label class="rating"><input type="radio" name="rating13">4</label>
-                                            <label class="rating"><input type="radio" name="rating13">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li class="questionItem">
-                                <h4 class="question">Question</h4>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Peer Name</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating21">1</label>
-                                            <label class="rating"><input type="radio" name="rating21">2</label>
-                                            <label class="rating"><input type="radio" name="rating21">3</label>
-                                            <label class="rating"><input type="radio" name="rating21">4</label>
-                                            <label class="rating"><input type="radio" name="rating21">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Peer Name</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating22">1</label>
-                                            <label class="rating"><input type="radio" name="rating22">2</label>
-                                            <label class="rating"><input type="radio" name="rating22">3</label>
-                                            <label class="rating"><input type="radio" name="rating22">4</label>
-                                            <label class="rating"><input type="radio" name="rating22">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="input">
-                                    <tr>
-                                        <th rowspan="2">Peer Name</th>
-                                        <td class="ratings">
-                                            <label class="rating"><input type="radio" name="rating23">1</label>
-                                            <label class="rating"><input type="radio" name="rating23">2</label>
-                                            <label class="rating"><input type="radio" name="rating23">3</label>
-                                            <label class="rating"><input type="radio" name="rating23">4</label>
-                                            <label class="rating"><input type="radio" name="rating23">5</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="comments" rows="1" cols="50" placeholder="Enter your comments here"></textarea>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </li>
-                        </ol>
                     </div>
+                    <select class="categories">
+                    </select>
                     <input type="submit" value="Submit" onclick="submit()">
                 </div>
             </div>
