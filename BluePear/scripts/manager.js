@@ -47,7 +47,6 @@ function create_questions(){
                          addValues_in_Sheet(questionnaire, i+1, teams);
                     }
                     else{
-                         console.log(i - categories.length - 1);
                          var participants = getParticipants(team_label[i - categories.length - 1]);
                          console.log(participants);
                          remove_blank_input(participants);
