@@ -21,21 +21,22 @@ function create_questions(){
           categories = get_value('category');
           teams = get_value('team');
 
-          // to entry from remove automatically added textbox
+          // to remove an automatically added textbox
           categories.splice(categories.length - 1, 1);
           teams.splice(teams.length - 1, 1);
+
           if((no_input(categories) == false) && (no_input(teams) == false) && (filename != '') && (categories.length != 1)){
                addSheetsNames(questionnaire, categories.concat(teams));
 
-               
-               categories.splice(0, 1);
-               teams.splice(0, 1);
                console.log(teams);
                console.log(category_label);
+               
+               // 
+               categories.splice(0, 1);
+               teams.splice(0, 1);
 
                addValues_in_Sheet(questionnaire, 0, categories);          
                for(var i = 0; i <= (categories.length + teams.length); i++){
-                    console.log(i);
                     if(i < categories.length){
                          var questions = getQuestions(category_label[i]);
                          remove_blank_input(questions);
@@ -48,8 +49,8 @@ function create_questions(){
                     }
                     else{
                          var participants = getParticipants(team_label[i - categories.length - 1]);
-                         console.log(participants);
                          remove_blank_input(participants);
+                         console.log(participants);
                          addValues_in_Sheet(questionnaire, i+1, participants);
                     }
                }
@@ -109,8 +110,9 @@ function addSheetsNames(workbook, SheetNames){
 
 // add values in specified sheet no.
 function addValues_in_Sheet(workbook, SheetNo, values){
+     workbook.set(SheetNo, 0, 0, '.');
      for(var i = 0; i < values.length; i++){
-          workbook.set(SheetNo, 0, i, values[i]); // column, row
+          workbook.set(SheetNo, 0, i+1, values[i]); // column, row
      }
 }
 
