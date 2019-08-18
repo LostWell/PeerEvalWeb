@@ -110,7 +110,7 @@ function addSheetsNames(workbook, SheetNames){
 
 // add values in specified sheet no.
 function addValues_in_Sheet(workbook, SheetNo, values){
-     workbook.set(SheetNo, 0, 0, '.');
+     workbook.set(SheetNo, 0, 0, '.'); // added this for easier parsing of data to peer side
      for(var i = 0; i < values.length; i++){
           workbook.set(SheetNo, 0, i+1, values[i]); // column, row
      }
