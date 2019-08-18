@@ -74,8 +74,7 @@ console.log('Program started!');
          var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
          var values = [];
          for(var i = 0; i < excelRows.length; i++){
-             var value = JSON.stringify(excelRows[i]).replace(/[^a-z\d\s_]+/gi, ''); // \W = retain only [^0-9a-zA-Z_]
-             console.log(value);
+             var value = JSON.stringify(excelRows[i]).replace(/[^a-z\d\s_]+/gi, '');
              values.push(value);
          }
          data.push(values);
