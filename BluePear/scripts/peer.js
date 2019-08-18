@@ -1,11 +1,7 @@
 
 console.log('Program started!');
-var s = 'keep%8$this_part 3£$@plz £$% @£';
-var r = s.replace(/[^a-z\d\s_]+/gi, "");
-console.log(s);
-console.log('Filtered:');
-console.log(r);
  
+// function to call excel file from local machine
  $(document).on('click', '#upload', function(){
      //Reference the FileUpload element.
      var fileUpload = $("#fileUpload")[0];
