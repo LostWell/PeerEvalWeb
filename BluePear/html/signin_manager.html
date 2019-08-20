@@ -39,15 +39,7 @@
             </div>
         </div>
         <script>
-            document.getElementById("showcheck").addEventListener("change", function() {
-                if(this.checked) {
-                    document.getElementById("pass").type = "text";
-                } else {
-                    document.getElementById("pass").type = "password";
-                }
-            });
-            
-            $("input[type=\"submit\"]").click(function(){
+            function login(){
                 var uname = $("#uname").val();
                 var pass = $("#pass").val();
                 if (uname == "" || pass == ""){
@@ -71,7 +63,23 @@
                         }
                     });
                 }
+            }
+            
+            document.getElementById("showcheck").addEventListener("change", function() {
+                if(this.checked) {
+                    document.getElementById("pass").type = "text";
+                } else {
+                    document.getElementById("pass").type = "password";
+                }
             });
+            
+            document.getElementById("pass").addEventListener("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    login();
+                }
+            });
+            
+            $("input[type=\"submit\"]").click(login());
         </script>
     </body>
 </html>

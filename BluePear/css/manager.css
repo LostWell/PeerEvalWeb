@@ -180,3 +180,15 @@ body{
     }
 
 }
+
+.links{
+    float: right;
+    cursor: pointer;
+    font-size: 2vh;
+    text-decoration: none;
+    color: #000000;
+}
+
+.links:hover{
+    color: #124191;
+}

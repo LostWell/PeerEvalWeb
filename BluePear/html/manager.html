@@ -14,8 +14,10 @@
         <nav>
             <a href="home.html">
                 <image id="logo" src="../images/nokia-logo.png"/>
-                <h2 id="sublogo">BluePear</h2><br/>
+                <h2 id="sublogo">BluePear</h2>
             </a>
+            <a class="links" id="logout" style="margin-left: 2vh;">Logout</a>
+            <a class="links" id="change">Change Password</a>
         </nav>
         <div id="content">
             <h1 class="headline">Manager's Page</h1>
@@ -50,6 +52,18 @@
                 var username = localStorage.getItem("username");
                 document.getElementsByClassName("headline")[0].textContent = "Welcome, ".concat(username);
             }
+            
+            document.getElementById("logout").addEventListener("click", function(){
+                var check = confirm("Are you sure you want to log out?");
+                if(check == true){
+                    localStorage.removeItem("username");
+                    window.location.replace("home.html");
+                }
+            });
+            
+            document.getElementById("change").addEventListener("click", function(){
+                window.location.assign("change.html");
+            });
         </script>
     </body>
 </html>
