@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Change Password</title>
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
+        <link rel="stylesheet" type="text/css" href="../css/animations.css">
+        <link rel="stylesheet" type="text/css" href="../css/nav.css">
+    
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <script type="text/javascript" src="../scripts/jszip.js"></script>
+        <script type="text/javascript" src="../scripts/FileSaver.js"></script>
+        <script type="text/javascript" src="../scripts/myexcel.js"></script>
+        <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="../scripts/event_handler.js"></script>
+        <script type="text/javascript" src="../scripts/functions.js"></script>
+    </head>
+    <body>
+        <nav>
+            <a href="manager.html">
+                <image id="logo" src="../images/nokia-logo.png"/>
+                <h2 id="sublogo">BluePear</h2><br/>
+            </a>
+        </nav>
+        <div id="content">
+            <h1 class="headline">Peer Page</h1>
+            <div class="wrapper">
+                <div id="titlebar">
+                    <h3>Change Password</h3>
+                </div>
+                <div id="form">
+                    <input type="password" placeholder="Old Password" id="oldpass" name="password" minlength="8" required>
+                    <input type="password" placeholder="New Password" id="pass" name="password" minlength="8" required>
+                    <input type="password" placeholder="Confirm New Password" id="cpass" name="password" minlength="8" required>
+                    <p style="color: red; visibility: hidden;" id="prompt">Please fill in all fields</p>
+                    <input type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+        <script>
+            $("input[type=\"submit\"]").click(function(){
+                var oldpass = $("#oldpass").val();
+                var pass = $("#pass").val();
+                var cpass = $("#cpass").val();
+                if (oldpass == "" || pass == "" || cpass == ""){
+                    $("#prompt").text("Please fill in all fields");
+                    $("#prompt").css("visibility", "visible");
+                } else if (pass.length < 8){
+                    $("#prompt").text("Password must be at least 8 characters long");
+                    $("#prompt").css("visibility", "visible");
+                } else if (pass != cpass){
+                    $("#prompt").text("Please confirm your new password");
+                    $("#prompt").css("visibility", "visible");
+                } else{
+                    $("#prompt").css("visibility", "hidden");
+                    $.post("../php/connect.php",
+                    {
+                        job: "change_peer",
+                        username: localStorage.getItem("username"),
+                        oldpassword: oldpass,
+                        newpassword: pass
+                    },
+                    function(data, status){
+                        if(data == "false"){
+                            $("#prompt").text("Incorrect password");
+                            $("#prompt").css("visibility", "visible");
+                        } else {
+                            alert(data);
+                            alert("Successfully changed password");
+                            localStorage.removeItem("username");
+                            localStorage.removeItem("type");
+                            window.location.replace("signin_peer.html");
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

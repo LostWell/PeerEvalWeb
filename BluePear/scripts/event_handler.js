@@ -124,10 +124,10 @@ function show_hide_icons(id_name){
 
      if(((id_name == 'edit') && (checkbox == 1)) || ((id_name == 'delete') && (checkbox > 0))){
           console.log("Item is Checked!");
-          icon.style.visibility = 'visible';
+          icon.style.display = 'inline-block';
      }   
      else{
-          icon.style.visibility = 'hidden';
+          icon.style.display = 'none';
           //console.log("No/more than one item is checked :<");
      }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Change Password</title>
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/login.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
@@ -56,7 +57,7 @@
                     $("#prompt").css("visibility", "hidden");
                     $.post("../php/connect.php",
                     {
-                        job: "change",
+                        job: "change_manager",
                         username: localStorage.getItem("username"),
                         oldpassword: oldpass,
                         newpassword: pass
@@ -69,6 +70,7 @@
                             alert(data);
                             alert("Successfully changed password");
                             localStorage.removeItem("username");
+                            localStorage.removeItem("type");
                             window.location.replace("signin_manager.html");
                         }
                     });

@@ -13,12 +13,12 @@ if ($conn->connect_error) {
 }
 
 
-if($_POST['job'] == "signin"){
+if($_POST['job'] == "signin_manager"){
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
     /* create a prepared statement */
-    if ($stmt = $conn->prepare("SELECT password FROM managers WHERE username=?")) {
+    if ($stmt = $conn->prepare("SELECT password FROM managers WHERE BINARY username = ?")) {
 
         /* bind parameters for markers */
         $stmt->bind_param("s", $user);
@@ -41,12 +41,53 @@ if($_POST['job'] == "signin"){
         /* close statement */
         $stmt->close();
     }
-} elseif ($_POST['job'] == "change"){
+} elseif ($_POST['job'] == "signin_peer"){
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
+
+    /* create a prepared statement */
+    if ($stmt = $conn->prepare("SELECT password FROM peers WHERE BINARY username = ?")) {
+
+        /* bind parameters for markers */
+        $stmt->bind_param("s", $user);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* bind result variables */
+        $stmt->bind_result($dbpass);
+
+        /* fetch value */
+        $stmt->fetch();
+
+        if ($dbpass == $pass){
+            echo "true";
+        } else{
+            echo "false";
+        }
+
+        /* close statement */
+        $stmt->close();
+    }
+} elseif ($_POST['job'] == "change_manager"){
     $user = $_POST['username'];
     $oldpass = $_POST['oldpassword'];
     $newpass = $_POST['newpassword'];
 
     $stmt = $conn->prepare("UPDATE managers SET password=? WHERE username=? AND password=?");
+    $stmt->bind_param("sss", $newpass, $user, $oldpass);
+    if($stmt->execute()){
+        echo "true";
+    } else{
+        echo "false";
+    }
+    $stmt->close();
+} elseif ($_POST['job'] == "change_peer"){
+    $user = $_POST['username'];
+    $oldpass = $_POST['oldpassword'];
+    $newpass = $_POST['newpassword'];
+
+    $stmt = $conn->prepare("UPDATE peers SET password=? WHERE username=? AND password=?");
     $stmt->bind_param("sss", $newpass, $user, $oldpass);
     if($stmt->execute()){
         echo "true";

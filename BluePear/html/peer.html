@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html>
     <head>
+        <title>Peer Evaluation</title>
         <link rel="stylesheet" type="text/css" href="../css/peer.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
@@ -21,8 +22,13 @@
         <nav>
             <a href="home.html">
                 <image id="logo" src="../images/nokia-logo.png"/>
-                <h2 id="sublogo">BluePear</h2><br/>
+                <h2 id="sublogo">BluePear</h2>
             </a>
+            <div id="account"><a>Username</a> <img id="account_arrow" src="../images/down-arrow.png"/></div>
+            <div id="account_dropdown">
+                <a class="links" id="change">Change Password</a>
+                <a class="links" id="logout">Logout</a>
+            </div>
         </nav>
         <div id="content">
             <h1 class="headline">Peer Evaluation</h1>
@@ -58,9 +64,9 @@
                                         </td>
                                     </tr>
                                 </table>
+                            </li>
+                        </ol>
                     </div>
-                    <select class="categories">
-                    </select>
                     <input type="submit" value="Submit" onclick="submit()">
                 </div>
             </div>
@@ -92,6 +98,38 @@
                     alert("[Success] Your evaluation has been submitted.");
                 }
             }
+            
+            if (localStorage.getItem("username") === null || localStorage.getItem("type") == "peer"){
+                window.location.replace("home.html");
+            } else{
+                var username = localStorage.getItem("username");
+                document.getElementsByClassName("account")[0].textContent = username;
+            }
+            
+            document.getElementById("logout").addEventListener("click", function(){
+                var check = confirm("Are you sure you want to log out?");
+                if(check == true){
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("type");
+                    window.location.replace("home.html");
+                }
+            });
+            
+            document.getElementById("change").addEventListener("click", function(){
+                window.location.assign("change_peer.html");
+            });
+            
+            document.getElementById("account").addEventListener("click", function(){
+                if(document.getElementById("account_dropdown").style.display == "block"){
+                    document.getElementById("account_dropdown").style.display = "none";
+                    document.getElementById("account").style.backgroundColor = "transparent";
+                    document.getElementById("account_arrow").src = "../images/down-arrow.png";
+                } else{
+                    document.getElementById("account_dropdown").style.display = "block";
+                    document.getElementById("account").style.backgroundColor = "#f0f0f0";
+                    document.getElementById("account_arrow").src = "../images/up-arrow.png";
+                }
+            });
         </script>
     </body>
 </html>
