@@ -40,7 +40,7 @@
             </div>
         </div>
         <script>
-            if (localStorage.getItem("username") !== null){
+            if (localStorage.getItem("username") !== null && localStorage.getItem("type") == "manager"){
                 window.location.replace("manager.html");
             }
             
