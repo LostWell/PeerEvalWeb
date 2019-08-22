@@ -6,6 +6,11 @@
 nav{
     background-color: #ffffff;
     padding: 2vh 5vh 2vh 5vh;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0vh;
+    box-shadow: 0vh 0.5vh 3vh rgb(0,0,0,0.2);
 }
 
 #logo{
@@ -31,7 +36,7 @@ nav{
     text-decoration: none;
     color: #000000;
     padding: 1vh 2vh;
-    margin-top: -0.8vh;
+    margin: -0.8vh 0vh -1.2vh 0vh;
     transition: 0.3s;
     border-radius: 5vh;
     font-weight: 600;

@@ -73,7 +73,7 @@ $(window).on('load', function(){
                                    <ol class="itemList" id=' + team_no + '>\
                                         <li>\
                                              <span class="item">\
-                                                  <input class=' + team_no + ' id="participant" type="text" placeholder="Type to add a participant">\
+                                                  <input class="' + team_no + ' member" id="participant" type="text" placeholder="Type to add a participant">\
                                                   <label id=' + delete_team + ' class="delete"><img src="../images/delete-hover.png"/></label>\
                                              </span>\
                                         </li>\
@@ -89,7 +89,7 @@ $(window).on('load', function(){
           document.getElementById('delete_btn').removeAttribute('id'); // transfer id to secure that the last added particpant textbox will not be deleted
           var add_box = '<li>\
                               <span class="item">\
-                                   <input class=' + name_team + ' id="participant" type="text" placeholder="Type to add a participant">\
+                                   <input class="' + name_team + ' member" id="participant" type="text" placeholder="Type to add a participant">\
                                    <label id="delete_btn" class="delete"><img src="../images/delete-hover.png"/></label>\
                               </span>\
                          </li>';

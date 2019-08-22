@@ -74,9 +74,11 @@ if($_POST['job'] == "signin_manager"){
     $oldpass = $_POST['oldpassword'];
     $newpass = $_POST['newpassword'];
 
-    $stmt = $conn->prepare("UPDATE managers SET password=? WHERE username=? AND password=?");
+    $stmt = $conn->prepare("UPDATE managers SET password=? WHERE BINARY username=? AND password=?");
     $stmt->bind_param("sss", $newpass, $user, $oldpass);
-    if($stmt->execute()){
+    $stmt->execute();
+    $count = $stmt->affected_rows;
+    if($count > 0){
         echo "true";
     } else{
         echo "false";
@@ -87,13 +89,33 @@ if($_POST['job'] == "signin_manager"){
     $oldpass = $_POST['oldpassword'];
     $newpass = $_POST['newpassword'];
 
-    $stmt = $conn->prepare("UPDATE peers SET password=? WHERE username=? AND password=?");
+    $stmt = $conn->prepare("UPDATE peers SET password=? WHERE BINARY username=? AND password=?");
     $stmt->bind_param("sss", $newpass, $user, $oldpass);
-    if($stmt->execute()){
+    $stmt->execute();
+    $count = $stmt->affected_rows;
+    if($count > 0){
         echo "true";
     } else{
         echo "false";
     }
+    $stmt->close();
+} elseif ($_POST['job'] == "check_members"){
+    $user = $_POST['username'];
+
+    $stmt = $conn->prepare("SELECT username FROM peers WHERE BINARY username=?");
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $stmt->bind_result($result);
+
+    /* fetch value */
+    $stmt->fetch();
+    if ($result != null){
+        echo "true";
+    } else{
+        echo "false";
+    }
+
+    /* close statement */
     $stmt->close();
 }
 
