@@ -99,11 +99,11 @@
                 }
             }
             
-            if (localStorage.getItem("username") === null || localStorage.getItem("type") == "peer"){
+            if (localStorage.getItem("username") === null || localStorage.getItem("type") != "peer"){
                 window.location.replace("home.html");
             } else{
                 var username = localStorage.getItem("username");
-                document.getElementsByClassName("account")[0].textContent = username;
+                document.querySelector("#account a").textContent = username;
             }
             
             document.getElementById("logout").addEventListener("click", function(){

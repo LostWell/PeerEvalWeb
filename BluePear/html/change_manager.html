@@ -10,12 +10,7 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
 
-        <script type="text/javascript" src="../scripts/jszip.js"></script>
-        <script type="text/javascript" src="../scripts/FileSaver.js"></script>
-        <script type="text/javascript" src="../scripts/myexcel.js"></script>
         <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
-        <script type="text/javascript" src="../scripts/event_handler.js"></script>
-        <script type="text/javascript" src="../scripts/functions.js"></script>
     </head>
     <body>
         <nav>
@@ -69,9 +64,7 @@
                         } else {
                             alert(data);
                             alert("Successfully changed password");
-                            localStorage.removeItem("username");
-                            localStorage.removeItem("type");
-                            window.location.replace("signin_manager.html");
+                            window.location.replace("manager.html");
                         }
                     });
                 }
