@@ -39,7 +39,7 @@ body{
     height: 5vh;
 }
 
-#cardTitle {
+.cardTitle {
     font-size: 3vh;
     display: table-cell;
     vertical-align: middle;
@@ -118,7 +118,7 @@ body{
         display: block;
         margin-bottom: 10vh;
     }
-    #cardTitle{
+    .cardTitle{
         display: block;
         float: none;
     }
@@ -162,7 +162,7 @@ body{
         display: block;
         margin-bottom: 10vh;
     }
-    #cardTitle{
+    .cardTitle{
         display: block;
         float: none;
     }

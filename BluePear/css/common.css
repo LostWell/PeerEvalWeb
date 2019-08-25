@@ -122,6 +122,11 @@ input[type="submit"]:hover{
     color: #124191;
 }
 
+.cardTitle {
+    font-size: 3vh;
+    color: #124191;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops

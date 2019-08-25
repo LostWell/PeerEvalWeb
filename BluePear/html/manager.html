@@ -27,26 +27,23 @@
             <h1 class="headline">Manager's Page</h1>
             <div class="wrapper">
                 <div id="titlebar">
-                    <h2 id="cardTitle">Questionnaires</h2>
+                    <h2 class="cardTitle">List of Questionnaires</h2>
                     <span id="toolbar">
                         <button id="edit" onclick="location.href='edit.html'" style="display:none"><img src="../images/edit-hover.png"/><span>Edit</span></button>
                         <button id="delete" style="display: none"><img src="../images/delete-hover.png"/><span>Delete</span></button>
                         <button id="add" onclick="location.href='create.html'"><img src="../images/plus-hover.png"/><span>Create</span></button>
                     </span>
                 </div>
-                <label>
-                    <span class="item">
-                        <input type="checkbox" onclick="show_hide_icons('edit'); show_hide_icons('delete')">Questionnaire File Name
-                    </span>
-                </label>
-                <label>
-                    <span class="item"><input type="checkbox" onclick="show_hide_icons('edit'); show_hide_icons('delete')">Questionnaire File Name
-                    </span>
-                </label>
-                <label>
-                    <span class="item"><input type="checkbox" onclick="show_hide_icons('edit'); show_hide_icons('delete')">Questionnaire File Name
-                    </span>
-                </label>
+                <div id="list">
+                </div><br/>
+                
+                <div id="upload">
+                    <form style="text-align: left" action="../php/upload.php" method="post" enctype="multipart/form-data">
+                        <h2 class="cardTitle" style="float:none">Upload a Questionnaire</h2><br/><br/>
+                        <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 1.7vh">
+                        <input type="submit" value="Upload" name="submit" style="margin-left: 0vh;">
+                    </form>
+                </div>
             </div>
         </div>
         <script>
@@ -82,6 +79,45 @@
                     document.getElementById("account_arrow").src = "../images/up-arrow.png";
                 }
             });
+            
+            $.get("../php/read.php", function(data){
+                var filenames = data.split(',');
+                for(var x = 0; x < filenames.length-1; x++){
+                    $("#list").append("<label> <span class=\"item\"><input type=\"checkbox\" onclick=\"show_hide_icons('edit'); show_hide_icons('delete')\"><span>"+filenames[x]+"</span></span></label>");
+                }
+            });
+            
+            document.getElementById("delete").addEventListener("click", remove);
+            
+            function remove(){
+                var checkboxes = document.getElementsByClassName("item");
+                var checked = "";
+                
+                for (var i=0; i<checkboxes.length; i++) {
+                    var itemChildren = checkboxes[i].children;
+                     if (itemChildren[0].checked) {
+                        if(i == checkboxes.length-1){
+                            checked += itemChildren[1].innerText;
+                        } else{
+                            checked += itemChildren[1].innerText+",";
+                        }
+                     }
+                }
+                
+                $.post("../php/delete.php",
+                    {
+                        checkboxes: checked
+                    },
+                    function(data, status){
+                        if(data == "true"){
+                            alert("Delete successful");
+                            location.reload();
+                        } else {
+                            alert("Delete failed");
+                        }
+                    }
+                );
+            }
         </script>
     </body>
 </html>

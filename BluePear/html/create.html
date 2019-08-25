@@ -79,7 +79,7 @@
                             </span>
                         </div>
                     </div>
-                    <input type="submit" value="Submit" onclick="check()">
+                    <input type="submit" value="Submit" onclick="create_questions()">
                 </div>
             </div>
         </div>
@@ -97,59 +97,6 @@
                     }
                 });
             });
-            
-            function check(){
-                var inputs = document.querySelectorAll("input");
-                var isEmpty = true;
-                for(var x = 0; x < inputs.length-1; x++){
-                    if(inputs[x].value != ""){
-                        isEmpty = false;
-                    }
-                }
-                
-                if(isEmpty == true){
-                    alert("Please input necessary data");
-                } else{
-                    var members = document.getElementsByClassName("member");
-                    var array = [];
-                    var lastIndex = members.length-1;
-                    alert("last number of x = " + lastIndex);
-                    for(var x = 0; x < members.length; x++){
-                        if(members[x].value != "" || x == lastIndex){
-                            alert(members[x].value);
-                            alert("x = " + x);
-                            $.post("../php/connect.php",
-                                {
-                                    job: "check_members",
-                                    username: members[x].value
-                                },
-                                function(data, status){
-                                    alert("post x = " + x);
-                                    if(x == lastIndex){
-                                        alert("last index, array length = " + array.length);
-                                        if(array.length != 0){
-                                            alert("Some members do not exist");
-                                            for(var y = 0; y < array.length; y++){
-                                                members[array[y]].borderBottomColor = "#FF0000";
-                                            }
-                                        }else{
-                                            create_questions();
-                                        }
-                                    }else{
-                                        alert(data);
-                                        if(data == "false"){
-                                            array.push(x);
-                                            alert("Pushed" + array.length);
-                                        } else{
-                                            members[x].borderBottomColor = "#d0d0d0";
-                                        }
-                                    }
-                                }
-                            );
-                        }
-                    }
-                }
-            }
         </script>
     </body>
 </html>
