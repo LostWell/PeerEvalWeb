@@ -1,26 +1,13 @@
 // generate summary report
-/* 
-summary for team;
-
-question 1:
-person 1 grades > sarili niya, person 2, person 3
-*/
 
 var participants = ['Lee Seung Gi', 'Jang Man Weol', 'Gu Chan Seong'];
-var rating1 = ['category_rating1 1', 'question 11', 1, 'rating1comment11','category_ 2', 'question 21', 3, 'rating1comment21', 'question 22', 4, 'rating1comment22', 'category_ 3', 'question 31', 3, 'rating1comment31'];
-var rating2 = ['category_rating2 1', 'question 11', 2, 'rating2comment11','category_ 2', 'question 21', 1, 'rating2comment21', 'question 22', 4, 'rating2comment22', 'category_ 3', 'question 31', 3, 'rating2comment31'];
-var rating3 = ['category_rating3 1', 'question 11', 3, 'rating3comment11', 'category_ 2', 'question 21', 4, 'rating3comment21', 'question 22', 3, 'rating3comment22', 'category_ 3', 'question 31', 3, 'rating3comment31']
-                  // seung gi, man weol, chan seong
+var rating1 = ['category_cat1', 'question 11', 1, 'rating1comment11','category_cat2', 'question 21', 3, 'rating1comment21', 'question 22', 4, 'rating1comment22', 'category_ 3', 'question 31', 3, 'rating1comment31'];
+var rating2 = ['category_cat11', 'question 11', 2, 'rating2comment11','category_cat2', 'question 21', 1, 'rating2comment21', 'question 22', 4, 'rating2comment22', 'category_ 3', 'question 31', 3, 'rating2comment31'];
+var rating3 = ['category_cat11', 'question 11', 3, 'rating3comment11', 'category_cat2', 'question 21', 4, 'rating3comment21', 'question 22', 3, 'rating3comment22', 'category_ 3', 'question 31', 3, 'rating3comment31']
+
 var seunggi =       [rating1, rating2, rating3];
 var manweol =       [rating2, rating2, rating2];
 var chanseong =     [rating2, rating3, rating1];
-/*
-
-1, 2, 2; (1+2+2)/3 = 1.67
-3, 1, 1; (3+1+1)/3 = 1.67
-4, 4, 4; (4+4+4)/3 = 4
-
-*/
 
 var answers = [seunggi, manweol, chanseong];
 var categories = [], questions = [], rating_per_person, scores, comments = [];
