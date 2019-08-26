@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Manager's Page</title>
-        <link rel="stylesheet" type="text/css" href="../css/manager.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/manager.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
         <link rel="stylesheet" type="text/css" href="../css/nav.css">
         <link rel="shortcut icon" type="image/png" href="../images/bluepear.png"/>
@@ -26,22 +26,25 @@
         <div id="content">
             <h1 class="headline">Manager's Page</h1>
             <div class="wrapper">
-                <div id="titlebar">
-                    <h2 class="cardTitle">List of Questionnaires</h2>
-                    <span id="toolbar">
-                        <button id="edit" onclick="location.href='edit.html'" style="display:none"><img src="../images/edit-hover.png"/><span>Edit</span></button>
-                        <button id="delete" style="display: none"><img src="../images/delete-hover.png"/><span>Delete</span></button>
-                        <button id="add" onclick="location.href='create.html'"><img src="../images/plus-hover.png"/><span>Create</span></button>
-                    </span>
+                <div class="section">
+                    <div id="titlebar">
+                        <h2 class="cardTitle">List of Questionnaires</h2>
+                        <span id="toolbar">
+                            <button id="edit" onclick="location.href='edit.html'" style="display:none"><img src="../images/edit-hover.png"/><span>Edit</span></button>
+                            <button id="delete" style="display: none"><img src="../images/delete-hover.png"/><span>Delete</span></button>
+                            <button id="add" onclick="location.href='create.html'"><img src="../images/plus-hover.png"/><span>Create</span></button>
+                        </span>
+                    </div>
+                    <div id="list">
+                    </div>
                 </div>
-                <div id="list">
-                </div><br/>
+                <br/><br/>
                 
-                <div id="upload">
-                    <form style="text-align: left" action="../php/upload.php" method="post" enctype="multipart/form-data">
+                <div class="section" id="upload">
+                    <form action="../php/upload.php" method="post" enctype="multipart/form-data">
                         <h2 class="cardTitle" style="float:none">Upload a Questionnaire</h2><br/><br/>
                         <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 1.7vh">
-                        <input type="submit" value="Upload" name="submit" style="margin-left: 0vh;">
+                        <input id="uploadButton" type="submit" value="Upload" name="submit">
                     </form>
                 </div>
             </div>
@@ -81,10 +84,36 @@
             });
             
             $.get("../php/read.php", function(data){
+                console.log(data);
                 var filenames = data.split(',');
+                var active = filenames[filenames.length-1];
+                console.log(active);
                 for(var x = 0; x < filenames.length-1; x++){
-                    $("#list").append("<label> <span class=\"item\"><input type=\"checkbox\" onclick=\"show_hide_icons('edit'); show_hide_icons('delete')\"><span>"+filenames[x]+"</span></span></label>");
+                    if (filenames[x] != active){
+                        $("#list").append("<label> <span class=\"item\"><input type=\"checkbox\" onclick=\"show_hide_icons('edit'); show_hide_icons('delete')\"><span>"+filenames[x]+"</span><button class=\"activate\">Activate</button></span></label>");
+                    } else{
+                        $("#list").append("<label> <span class=\"item\"><input type=\"checkbox\" onclick=\"show_hide_icons('edit'); show_hide_icons('delete')\"><span>"+filenames[x]+"</span></span></label>");
+                    }
                 }
+                
+                $(".activate").each(function () {
+                    $(this).click(function(){
+                        var activeFile = $(this).prev("span").text();
+                        $.post("../php/activate.php",
+                            {
+                                name: activeFile
+                            },
+                            function(data, status){
+                                if(data == "true"){
+                                    alert("Activation successful");
+                                    location.reload();
+                                } else {
+                                    alert("Activation failed");
+                                }
+                            }
+                        );
+                    })
+                });
             });
             
             document.getElementById("delete").addEventListener("click", remove);
