@@ -1,9 +1,11 @@
 // generate summary report
 
 var participants = ['Lee Seung Gi', 'Jang Man Weol', 'Gu Chan Seong'];
-var rating1 = ['category_cat1', 'question 11', 1, 'rating1comment11','category_cat2', 'question 21', 3, 'rating1comment21', 'question 22', 4, 'rating1comment22', 'category_ 3', 'question 31', 3, 'rating1comment31'];
-var rating2 = ['category_cat11', 'question 11', 2, 'rating2comment11','category_cat2', 'question 21', 1, 'rating2comment21', 'question 22', 4, 'rating2comment22', 'category_ 3', 'question 31', 3, 'rating2comment31'];
-var rating3 = ['category_cat11', 'question 11', 3, 'rating3comment11', 'category_cat2', 'question 21', 4, 'rating3comment21', 'question 22', 3, 'rating3comment22', 'category_ 3', 'question 31', 3, 'rating3comment31']
+var rating1 = ['category_cat1', 'question 11', 1, 'rating1comment11','category_cat2', 'question 21', 3, 'rating1comment21', 'question 22', 4, 'rating1comment22', 'category_cat3', 'question 31', 4, 'rating1comment31', 'question 32', 3, 'rating1comment32', 'question 33', 3, 'rating1comment33', 'category_cat4', 'question 41', 2, 'rating1comment41'];
+
+var rating2 = ['category_cat11', 'question 11', 2, 'rating2comment11','category_cat2', 'question 21', 1, 'rating2comment21', 'question 22', 4, 'rating2comment22', 'category_cat3', 'question 31', 4, 'rating2comment31', 'question 32', 3, 'rating2comment32', 'question 33', 3, 'rating2comment33', 'category_cat4', 'question 41', 3, 'rating2comment41'];
+
+var rating3 = ['category_cat11', 'question 11', 3, 'rating3comment11', 'category_cat2', 'question 21', 4, 'rating3comment21', 'question 22', 3, 'rating3comment22', 'category_cat3', 'question 31', 4, 'rating3comment31', 'question 32', 3, 'rating3comment32', 'question 33', 3, 'rating3comment33', 'category_cat4', 'question 41', 1, 'rating3comment41']
 
 var seunggi =       [rating1, rating2, rating3];
 var manweol =       [rating2, rating2, rating2];
@@ -27,12 +29,14 @@ rating_per_person = ratingForAPerson(answers);
 console.log(rating_per_person);
 
 console.log('Generating mean scores per question');
-scores = meanScores(rating_per_person);
+scores = meanScores(rating_per_person, questions);
 console.log(scores);
 
 console.log('Merging comments');
-comments = commentsPerPerson(rating_per_person);
+comments = commentsPerPerson(rating_per_person, questions);
 console.log(comments);
+
+generateSummary('lol', categories, questions, comments, scores, participants);
 
 function getCategoriesAndQuestions(answers, categories, questions){
 
@@ -71,7 +75,7 @@ function ratingForAPerson(answers){
      return ratingperperson;
 }
 
-function meanScores(answers){
+function meanScores(answers, questions){
      var getScores = [];
      var mean_scores = [];
 
@@ -110,12 +114,27 @@ function meanScores(answers){
           mean_scores.push(mean_per_person);
      }
      
+     getScores = [];
+     console.log(questions.length);
+     for(var i = 0; i < mean_scores.length; i++){
+          console.log(i);
+          console.log(mean_scores[i]);
+          var per_categ_scores = []
+          for(var j = 0; mean_scores[i].length > 0; j++){
+               var new_min_score = mean_scores[i].splice(0, questions[j].length);
+               per_categ_scores.push(new_min_score);
+          }
+          getScores.push(per_categ_scores);
+     }
+     mean_scores = getScores;
+     
      return mean_scores;
 }
 
-function commentsPerPerson(answers){
+function commentsPerPerson(answers, questions){
      var comments = [];
      var getComments = [];
+     var size = answers[0][0].filter(isNumber).length; // for slicing
      // filter comments of one person
      for(var i = 0; i < answers.length; i++){
           var person_comments = [];
@@ -129,24 +148,21 @@ function commentsPerPerson(answers){
           }
           getComments.push(person_comments);
      }
-     //console.log(getComments);
 
      var all_comments = [];
      for(var i = 0; i < getComments.length; i++){
           var comment = [];
           while(getComments[i].length > 0){
-               var size = 4;
                var comments_per_person = getComments[i].splice(0, size);
                comment.push(comments_per_person);
           }
           all_comments.push(comment);
      }
-     //console.log(all_comments);
 
      // gather comments per person
      for(var i = 0; i < all_comments.length; i++){
           var person_comments = [];
-          for(var j = 0; j <all_comments[i][0].length; j++){
+          for(var j = 0; j < all_comments[i][0].length; j++){
                var question_comments = [];
                for(var k = 0; k < all_comments[i].length; k++){
                     question_comments.push(all_comments[i][k][j]);
@@ -156,6 +172,19 @@ function commentsPerPerson(answers){
           comments.push(person_comments);
      }
 
+     getComments = [];
+     console.log(comments[0].length);
+     for(var i = 0; i < comments.length; i++){
+          var per_categ_comments = []
+          for(var j = 0; comments[i].length > 0; j++){
+               var new_comment = comments[i].splice(0, questions[j].length);
+               per_categ_comments.push(new_comment);
+          }
+          getComments.push(per_categ_comments);
+     }
+     console.log('comments segregated:');
+     console.log(getComments);
+     comments = getComments;
      return comments;
 }
 
@@ -175,52 +204,40 @@ function meanArray(array){
      return mean;
 }
 
-//generateSummary('lol', answers);
-
-/*
-
-categories = [category 1, category 2];
-questions = [[question 11], [questions 21, questions 22]];
-comments = [[[comment 11, comment11, comment11]], [[comment21, comment21, comment21], [comment22, comment22, comment22]]];
-scores = [[1], [1,2]];
-}*/
-
-generateSummary('lol', categories, questions, comments, scores, participants);
-
 function generateSummary(filename, categories, questions, comments, scores, participants){
+     var total_questions = 0;
      var summary_answers = [];
-     var summary = $JExcel.new("Arial 10");
+     var summary = $JExcel.new("Times New Roman 10");
      addSheetsNames(summary, participants);
 
+     for(var i = 0; i < questions.length; i++){
+          total_questions+=questions[i].length;
+     }
+     console.log(total_questions);
+
      for(var i = 0; i < participants.length; i++){
-          var per_person_data = [];
-          per_person_data.push('Name: ' + participants[i]);
-          per_person_data.push('');
-
-          /*per_person_data.push(categories[i]);
-          for(var j = 0; j < questions[i].length; j++){
-               per_person_data.push(questions[i][j]);
-               per_person_data.push(scores[i][j]);
-          }
-          summary_answers.push(per_person_data);*/
-
-          for(var j = 0; j < categories.length; j++){
-               per_person_data.push(categories[j]);
-               per_person_data.push('');
-               for(var k = 0; k < questions[j].length; k++){
-                    per_person_data.push(questions[j][k]);
-                    per_person_data.push(scores[i][k + j]);
-                    for(var l = 0; l < comments.length; l++){
-                         per_person_data.push(comments[i][k+j][l]);
-                    }
-               }
-               per_person_data.push('');
-          }
-          summary_answers.push(per_person_data);
+          summary_answers.push([]);
      }
 
+     for(var i = 0; i < participants.length; i++){
+          summary_answers[i].push('Name: ' + participants[i]);
+          summary_answers[i].push('');
+     }
+     
+     for(var i = 0; i < summary_answers.length; i++){
+          for(var j = 0, l = 0; j < categories.length; j++){
+               summary_answers[i].push(categories[j]);
+               for(var k = 0; k < questions[j].length; k++){
+                    summary_answers[i].push(questions[j][k]);
+                    summary_answers[i].push(scores[i][j][k]);
+                    for(var l = 0; l < comments[i][j][k].length; l++){
+                         summary_answers[i].push(comments[i][j][k][l]);
+                    }
+               }
+               summary_answers[i].push('');
+          }
+     }
      console.log(summary_answers);
-     console.log(summary_answers[0].length);
 
      for(var i = 0; i < participants.length; i++){
           addValues_in_Sheet(summary, i, summary_answers[i]);
