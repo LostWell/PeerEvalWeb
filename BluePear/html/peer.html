@@ -131,6 +131,10 @@
                     document.getElementById("account_arrow").src = "../images/up-arrow.png";
                 }
             });
+            
+            $.get("../php/filename.php", function(data, status){
+                  document.location = "../php/questionnaires/"+data;
+            });
         </script>
     </body>
 </html>
