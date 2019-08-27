@@ -1,4 +1,18 @@
-// peer side functions
+
+function show_hide_icons(){
+    var checkbox =  $('input:checkbox').is(':checked');
+    console.log(checkbox[0]);
+    var icon = document.getElementById('edit');
+
+    if(checkbox > 0){
+        console.log("Item is Checked!");
+        icon.style.display = 'block';
+    }
+    else{
+        console.log("No item is checked :<");
+        icon.style.display = 'none';
+    }
+}
 
 console.log('Program started!');
 
@@ -71,7 +85,10 @@ function ProcessExcel(data){
     $('.categories').append(appendCategories(data[0]));
     setupCategoryQuestions(0, all_data[1], participants, scoring);
     for(var i = 0; i < data[0].length; i++){
-        inputs.push([]);
+        var input = [];
+        for(var j = 0; j < 2; j++)
+            input.push([]);
+        inputs.push(input);
     }
     
     previous_category_index = 0;
@@ -90,9 +107,28 @@ $(document).on('change', '.categories', function(){
     //console.log('inputs');
     //console.log(inputs);
     setupCategoryQuestions(current_category, all_data[current_category + 1], participants, scoring);
-    
+    appendAnswers(current_category, inputs);
 
 });
+
+function appendAnswers(category_number, answers){
+    console.log(category_number);
+    var comments = $('.comments');
+    if(answers[category_number][1].length != 0){
+        for(var i = 0; i < comments.length; i++){
+            comments[i].value = answers[category_number][1][i];
+        }
+    }
+
+    var ratings = $('.ratings');
+    if(answers[category_number][0].length != 0){
+        for(var i = 0; i < ratings.length; i++){
+            ratings[i] = answers[category_number][0][i];
+            //ratings[i].append(.html());
+        }
+    }
+    
+}
 
 function setupCategoryQuestions(category_index, questions, participants, scoring){
     previous_category_index = category_index;
@@ -176,10 +212,14 @@ function get_InputValues(element_name, variable_name){
 
 function store_inputs(){
     var ratings = [], comments= [];
+
+    ratings = $('.ratings');
+    console.log('Radios:')
+
     get_InputValues('comments', comments);
     current_inputs = [ratings, comments];
 
-    //console.log(comment_tag);
+    console.log(comments);
 
     /*for(var i = 0; i < current_inputs.length; i++){
         for(var j = 0; j < current_inputs[i].length; j++)
