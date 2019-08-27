@@ -179,7 +179,7 @@ function store_inputs(){
     get_InputValues('comments', comments);
     current_inputs = [ratings, comments];
 
-    console.log(comment_tag);
+    //console.log(comment_tag);
 
     /*for(var i = 0; i < current_inputs.length; i++){
         for(var j = 0; j < current_inputs[i].length; j++)
