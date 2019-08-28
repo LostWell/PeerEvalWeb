@@ -1,11 +1,11 @@
 // generate summary report
 
 var participants = ['Lee Seung Gi', 'Jang Man Weol', 'Gu Chan Seong'];
-var rating1 = ['category_cat1', 'question 11', 1, 'rating1comment11','category_cat2', 'question 21', 3, 'rating1comment21', 'question 22', 4, 'rating1comment22', 'category_cat3', 'question 31', 4, 'rating1comment31', 'question 32', 3, 'rating1comment32', 'question 33', 3, 'rating1comment33', 'category_cat4', 'question 41', 2, 'rating1comment41'];
+var rating1 = ['Category: cat1', 'question 11', '1', 'rating1comment11','Category: cat2', 'question 21', '3', 'rating1comment21', 'question 22', '4', 'rating1comment22', 'Category: cat3', 'question 31', '4', 'rating1comment31', 'question 32', '3', 'rating1comment32', 'question 33', '3', 'rating1comment33', 'Category: cat4', 'question 41', '2', 'rating1comment41'];
 
-var rating2 = ['category_cat11', 'question 11', 2, 'rating2comment11','category_cat2', 'question 21', 1, 'rating2comment21', 'question 22', 4, 'rating2comment22', 'category_cat3', 'question 31', 4, 'rating2comment31', 'question 32', 3, 'rating2comment32', 'question 33', 3, 'rating2comment33', 'category_cat4', 'question 41', 3, 'rating2comment41'];
+var rating2 = ['Category: cat11', 'question 11', '2', 'rating2comment11','Category: cat2', 'question 21', '1', 'rating2comment21', 'question 22', '4', 'rating2comment22', 'Category: cat3', 'question 31', '4', 'rating2comment31', 'question 32', '3', 'rating2comment32', 'question 33', '3', 'rating2comment33', 'Category: cat4', 'question 41', '3', 'rating2comment41'];
 
-var rating3 = ['category_cat11', 'question 11', 3, 'rating3comment11', 'category_cat2', 'question 21', 4, 'rating3comment21', 'question 22', 3, 'rating3comment22', 'category_cat3', 'question 31', 4, 'rating3comment31', 'question 32', 3, 'rating3comment32', 'question 33', 3, 'rating3comment33', 'category_cat4', 'question 41', 1, 'rating3comment41']
+var rating3 = ['Category: cat11', 'question 11', '3', 'rating3comment11', 'Category: cat2', 'question 21', '4', 'rating3comment21', 'question 22', '3', 'rating3comment22', 'Category: cat3', 'question 31', '4', 'rating3comment31', 'question 32', '3', 'rating3comment32', 'question 33', '3', 'rating3comment33', 'Category: cat4', 'question 41', '1', 'rating3comment41']
 
 var seunggi =       [rating1, rating2, rating3];
 var manweol =       [rating2, rating2, rating2];
@@ -38,13 +38,56 @@ console.log(comments);
 
 generateSummary('lol', categories, questions, comments, scores, participants);
 
+function generateSummary(filename, categories, questions, comments, scores, participants){
+     var total_questions = 0;
+     var summary_answers = [];
+     var summary = $JExcel.new("Times New Roman 10");
+     addSheetsNames(summary, participants);
+
+     for(var i = 0; i < questions.length; i++){
+          total_questions+=questions[i].length;
+     }
+     console.log(total_questions);
+
+     for(var i = 0; i < participants.length; i++){
+          summary_answers.push([]);
+     }
+
+     for(var i = 0; i < participants.length; i++){
+          summary_answers[i].push('Name: ' + participants[i]);
+          summary_answers[i].push('');
+     }
+     
+     for(var i = 0; i < summary_answers.length; i++){
+          for(var j = 0, l = 0; j < categories.length; j++){
+               summary_answers[i].push(categories[j]);
+               for(var k = 0; k < questions[j].length; k++){
+                    summary_answers[i].push(questions[j][k]);
+                    summary_answers[i].push(scores[i][j][k]);
+                    for(var l = 0; l < comments[i][j][k].length; l++){
+                         summary_answers[i].push(comments[i][j][k][l]);
+                    }
+               }
+               summary_answers[i].push('');
+          }
+     }
+     console.log(summary_answers);
+
+     for(var i = 0; i < participants.length; i++){
+          addValues_in_Sheet(summary, i, summary_answers[i]);
+     }     
+
+     if(prompt_final() == true)
+          summary.generate(filename + '.xlsx');
+}
+
 function getCategoriesAndQuestions(answers, categories, questions){
 
      var question = [];
 
      categories.push(answers[0].split('_').pop());
      for(var i = 1; i < answers.length; i++){
-          if((isNaN(answers[i])) && (answers[i].indexOf('category_') > -1)){               
+          if((isNaN(answers[i])) && (answers[i].indexOf('Category: ') > -1)){               
                var category = answers[i].split('_').pop();
 
                categories.push(category);
@@ -142,7 +185,7 @@ function commentsPerPerson(answers, questions){
                for(var k = 0; k < answers[i][j].length; k++){
                     if(isNumber(answers[i][j][k])){
                          k++;
-                         person_comments.push(answers[i][j][k]);
+                         person_comments.push(answers[i][j][k].replace('Comment: ', ''));
                     }
                }
           }
@@ -189,62 +232,20 @@ function commentsPerPerson(answers, questions){
 }
 
 function isNumber(element){
-     if (isNaN(element) == false){
-          return element;
+     var rating = element.replace('Rating: ', '');
+     if (isNaN(rating) == false){
+          return rating;
      }
 }
 
 function meanArray(array){
      var mean = 0;
      for(var i = 0; i < array.length; i++){
-          mean += array[i];
+          mean += Number(array[i]);
      }
      mean = mean/array.length;
 
      return mean;
-}
-
-function generateSummary(filename, categories, questions, comments, scores, participants){
-     var total_questions = 0;
-     var summary_answers = [];
-     var summary = $JExcel.new("Times New Roman 10");
-     addSheetsNames(summary, participants);
-
-     for(var i = 0; i < questions.length; i++){
-          total_questions+=questions[i].length;
-     }
-     console.log(total_questions);
-
-     for(var i = 0; i < participants.length; i++){
-          summary_answers.push([]);
-     }
-
-     for(var i = 0; i < participants.length; i++){
-          summary_answers[i].push('Name: ' + participants[i]);
-          summary_answers[i].push('');
-     }
-     
-     for(var i = 0; i < summary_answers.length; i++){
-          for(var j = 0, l = 0; j < categories.length; j++){
-               summary_answers[i].push(categories[j]);
-               for(var k = 0; k < questions[j].length; k++){
-                    summary_answers[i].push(questions[j][k]);
-                    summary_answers[i].push(scores[i][j][k]);
-                    for(var l = 0; l < comments[i][j][k].length; l++){
-                         summary_answers[i].push(comments[i][j][k][l]);
-                    }
-               }
-               summary_answers[i].push('');
-          }
-     }
-     console.log(summary_answers);
-
-     for(var i = 0; i < participants.length; i++){
-          addValues_in_Sheet(summary, i, summary_answers[i]);
-     }     
-
-     if(prompt_final() == true)
-          summary.generate(filename + '.xlsx');
 }
 
 function prompt_final(){
