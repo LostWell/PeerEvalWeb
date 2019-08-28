@@ -14,6 +14,22 @@ function show_hide_icons(){
     }
 }
 
+
+function show_hide_icons(){
+    var checkbox =  $('input:checkbox').is(':checked');
+    console.log(checkbox[0]);
+    var icon = document.getElementById('edit');
+
+    if(checkbox > 0){
+        console.log("Item is Checked!");
+        icon.style.display = 'block';
+    }
+    else{
+        console.log("No item is checked :<");
+        icon.style.display = 'none';
+    }
+}
+
 console.log('Program started!');
 
 $(document).on('click', '#upload', function(){
@@ -137,22 +153,26 @@ function setupCategoryQuestions(category_index, questions, participants, scoring
 }
 
 function appendQuestions(questions, participants, scoring){
-    var participants = appendParticipants(participants, scoring);
     var appendData = '';
+    var name = [];
     for(var i = 0; i < questions.length; i++){
+        name.push(i);
+        name.push(i + questions.length);
+        var participant = appendParticipants(participants, scoring, name);
         appendData += '<li class="questionItem">\
-                            <h4 class="question">'+ questions[i] +'</h4>' + participants + '\
+                            <h4 class="question">'+ questions[i] +'</h4>' + participant + '\
                         </li>';
+        name = [];
     }
     //console.log('Here!\n' + appendData);
     return appendData;
 }
 
-function appendParticipants(participants, scoring){
+function appendParticipants(participants, scoring, name){
     var commentbox = addCommentTextbox();
-    var scores = scoringLabel(scoring);
     var appendData = '';
     for(var i = 0; i < participants.length; i++){
+        var scores = scoringLabel(scoring, name[i]);
         appendData +=   '<table class="input">\
                             <tr>\
                                 <th rowspan="2">' + participants[i] + '</th>' + scores +'\
@@ -162,6 +182,17 @@ function appendParticipants(participants, scoring){
     }
 
     return appendData;
+}
+
+function scoringLabel(score_legend, name){
+    var appendScoring = '<td class=ratings>';
+    for(var i = 0; i < score_legend.length; i++){
+        appendScoring += '<label class="rating"><input type="radio" name="'+ name +'" value= "' + score_legend[i] +'">' + score_legend[i] + '</label>';
+    }
+    appendScoring += '</td>';
+    //console.log(appendScoring);
+
+    return appendScoring;
 }
 
 function addCommentTextbox(){
@@ -180,17 +211,6 @@ function appendCategories(categories){
         appendData += '<option value="'+ categories[i] +'">'+ categories[i] +'</option>';
     }
     return appendData;
-}
-
-function scoringLabel(score_legend){
-    var appendScoring = '<td class=ratings>';
-    for(var i = 0; i < score_legend.length; i++){
-        appendScoring += '<label class="rating"><input type="radio" name="rating01" value= "' + score_legend[i] +'">' + score_legend[i] + '</label>';
-    }
-    appendScoring += '</td>';
-    //console.log(appendScoring);
-
-    return appendScoring;
 }
 
 // get user's input
