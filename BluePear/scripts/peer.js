@@ -14,22 +14,6 @@ function show_hide_icons(){
     }
 }
 
-
-function show_hide_icons(){
-    var checkbox =  $('input:checkbox').is(':checked');
-    console.log(checkbox[0]);
-    var icon = document.getElementById('edit');
-
-    if(checkbox > 0){
-        console.log("Item is Checked!");
-        icon.style.display = 'block';
-    }
-    else{
-        console.log("No item is checked :<");
-        icon.style.display = 'none';
-    }
-}
-
 console.log('Program started!');
 
 $(document).on('click', '#upload', function(){
@@ -120,30 +104,16 @@ $(document).on('change', '.categories', function(){
     console.log(all_data[0][previous_category_index]);
 
     inputs[previous_category_index] = store_inputs();
-    //console.log('inputs');
-    //console.log(inputs);
     setupCategoryQuestions(current_category, all_data[current_category + 1], participants, scoring);
     appendAnswers(current_category, inputs);
-
 });
 
-function appendAnswers(category_number, answers){
-    console.log(category_number);
-    var comments = $('.comments');
-    if(answers[category_number][1].length != 0){
-        for(var i = 0; i < comments.length; i++){
-            comments[i].value = answers[category_number][1][i];
-        }
+function appendCategories(categories){
+    var appendData = '';
+    for(var i = 0; i < categories.length; i++){
+        appendData += '<option value="'+ categories[i] +'">'+ categories[i] +'</option>';
     }
-
-    var ratings = $('.ratings');
-    if(answers[category_number][0].length != 0){
-        for(var i = 0; i < ratings.length; i++){
-            ratings[i] = answers[category_number][0][i];
-            //ratings[i].append(.html());
-        }
-    }
-    
+    return appendData;
 }
 
 function setupCategoryQuestions(category_index, questions, participants, scoring){
@@ -205,12 +175,162 @@ function addCommentTextbox(){
     return appendData;
 }
 
-function appendCategories(categories){
-    var appendData = '';
-    for(var i = 0; i < categories.length; i++){
-        appendData += '<option value="'+ categories[i] +'">'+ categories[i] +'</option>';
+function appendAnswers(category_number, answers){
+    console.log(category_number);
+    var comments = $('.comments');
+    if(answers[category_number][1].length != 0){
+        for(var i = 0; i < comments.length; i++){
+            comments[i].value = answers[category_number][1][i];
+        }
     }
-    return appendData;
+
+    var ratings = $('.ratings');
+    if(answers[category_number][0].length != 0){
+        for(var i = 0; i < ratings.length; i++){
+            var labels = ratings[i].children;
+            for(var j = 0; j < labels.length; j++){
+                if (labels[j].firstElementChild.value == answers[category_number][0][i]){
+                    labels[j].firstElementChild.checked = true;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function store_inputs(){
+    var ratings, comments= [], rating = [];
+
+    ratings = $('.ratings');
+    console.log('Radios:');
+    for(var i = 0; i < ratings.length; i++){
+        var labels = ratings[i].children;
+        //console.log('Here!');
+        for(var j = 0; j <= labels.length; j++){
+            if(j == labels.length){
+                rating.push('');
+            }
+            else if (labels[j].firstElementChild.checked == true){
+                rating.push(labels[j].firstElementChild.value);
+                break;
+            }
+        }
+    }
+
+    get_InputValues('comments', comments);
+    current_inputs = [rating, comments];
+
+    return current_inputs;
+}
+// filename, categories, questions, comments, scores, participants
+function create_answer(){
+    inputs[previous_category_index] = store_inputs();
+    // 1 2 3 4 5 6
+    // 1 3 5 2 4 6
+    console.log("Generating Answers...");
+
+    var filename = 'lol';
+    var scores = [], comments = [];
+    var categories = all_data[0];
+    var participants = all_data[all_data[0].length + 2];
+
+    for(var i = 0; i < inputs.length; i++){
+        for(var j = 0; j < inputs[i].length; j++){ // inputs[i].length = 2
+            if(j == 0){
+                for(var k = 0; k < participants.length; k++){
+                    for(var l = k; l < inputs[i][j].length; l+=participants.length){
+                        //console.log(l + k);
+                        scores.push(inputs[i][j][l]);
+                    }
+                }
+            } else if(j == 1){
+                for(var k = 0; k < participants.length; k++){
+                    for(var l = k; l < inputs[i][j].length; l+=participants.length){
+                        //console.log(l + k);
+                        comments.push(inputs[i][j][l]);
+                    }
+                }
+            }
+        }
+    }
+    console.log('scores:')
+    console.log(scores);
+    console.log('comments:')
+    console.log(comments);
+
+    var summary_answers = [];
+    var summary = $JExcel.new("Times New Roman 10");
+    addSheetsNames(summary, participants);
+
+    for(var i = 0; i < participants.length; i++){
+         summary_answers.push([]);
+    }
+
+    for(var i = 0; i < participants.length; i++){
+         summary_answers[i].push('Name: ' + participants[i]);
+         summary_answers[i].push('');
+    }
+    
+    for(var i = 0, current_question = 0; i < summary_answers.length; i++){
+         for(var j = 0; j < categories.length; j++){
+            summary_answers[i].push('Category: ' + categories[j]);
+            var questions = all_data[j + 1];
+
+            for(var k = 0; k < questions.length; k++, current_question++){
+                summary_answers[i].push(questions[k]);
+                //summary_answers[i].push('');
+                summary_answers[i].push('Rating: ' + scores[current_question]);
+                summary_answers[i].push('Comment: ' + comments[current_question]);
+            }
+            summary_answers[i].push('');
+            current_question+=questions.length;
+         }
+    }
+
+    for(var i = 0; i < participants.length; i++){
+         addValues_in_Sheet(summary, i, summary_answers[i]);
+    }
+
+    console.log(summary_answers);
+
+    if(prompt_final() == true)
+         summary.generate(filename + '.xlsx');
+}
+
+function scoresPerCategory(scores){
+    var score = [];
+    for(var i = 0; i < scores.length; i++){
+        var question_score = [];
+        for(var j = 0; j < scores[i].length; j++){
+             var question_scores = [];
+             for(var k = 0; k < scores[i].length; k++){
+                  question_scores.push(scores[i][k][j]);
+             }
+             question_score.push(question_scores);
+        }
+        score.push(question_score);
+   }
+   
+   return score;
+}
+
+function commentsPerCategory(comments){
+
+}
+
+// add names of sheets (category)
+function addSheetsNames(workbook, SheetNames){
+    for(var i = 0; i < SheetNames.length; i++){
+         workbook.addSheet(SheetNames[i]);
+    }
+}
+
+// add values in specified sheet no.
+function addValues_in_Sheet(workbook, SheetNo, values){
+    workbook.set(SheetNo, 0, 0, '.'); // added this for easier parsing of data to peer side
+    for(var i = 0; i < values.length; i++){
+         workbook.set(SheetNo, 0, i+1, values[i]); // column, row
+    }
 }
 
 // get user's input
@@ -230,25 +350,6 @@ function get_InputValues(element_name, variable_name){
     return names;
 }
 
-function store_inputs(){
-    var ratings = [], comments= [];
-
-    ratings = $('.ratings');
-    console.log('Radios:')
-
-    get_InputValues('comments', comments);
-    current_inputs = [ratings, comments];
-
-    console.log(comments);
-
-    /*for(var i = 0; i < current_inputs.length; i++){
-        for(var j = 0; j < current_inputs[i].length; j++)
-            console.log(current_inputs[i][j].value);
-    }*/
-
-    return current_inputs;
-}
-
 // stores value of variables to be available in all pages
 function store_value(name, value){
      sessionStorage.setItem(name, value);
@@ -261,4 +362,12 @@ function store_value(name, value){
 function get_value(name){
      var value = sessionStorage.getItem(name);
      return value.split(",");
+}
+
+// prompt user if all inputs are already final
+function prompt_final(){
+    var note = confirm("Are you sure?");
+    if(note==true)
+         return true;
+    return false;
 }
