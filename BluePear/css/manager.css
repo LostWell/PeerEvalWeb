@@ -5,6 +5,21 @@ body{
     padding: 5vh;
 }
 
+#downloadables{
+    line-height: 1.8vh;
+}
+
+.itemDownload{
+    font-size: 2vh;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 2vh 0vh;
+    margin: 0;
+    transition: 0.3s;
+    border-radius: 2vh;
+    line-height: 1.8vh;
+}
+
 .item{
     font-size: 2vh;
     text-align: left;
@@ -16,9 +31,12 @@ body{
 }
 
 .item input{
-    margin: 0vh 1vh 0vh 0vh;
+    margin: 0.5vh 0vh 0vh 0vh;
     opacity: 0.5;
     transition: 0.3s;
+    float: left;
+    position: absolute;
+    z-index: 0;
 }
 
 .item:hover {
@@ -35,6 +53,15 @@ body{
 
 .item input:checked {
     opacity: 1;
+}
+
+.filenames{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    max-width:60vh;
+    display:inline-block;
+    margin-left: 2vh;
 }
 
 #titlebar{
@@ -100,8 +127,12 @@ body{
     text-align: left;
 }
 
-#uploadButton, #generateButton, #downloadButton{
+#uploadButton, #generateButton{
     margin: 5vh auto auto 0vh;
+}
+
+#downloadButton{
+    margin: 3vh auto auto 0vh;
 }
 
 .section{
@@ -117,7 +148,7 @@ body{
     width: 7.5vh;
     height: 3vh;
     font-size: 1.5vh;
-    background: #32CD32;
+    background: #b0b0b0;
     border: none;
     color: #ffffff;
     border-radius: 2vh;
@@ -126,6 +157,24 @@ body{
 }
 
 .activate:hover{
+    background: #54EF54;
+}
+
+.reactivate{
+    float: right;
+    cursor: pointer;
+    width: 7.5vh;
+    height: 3vh;
+    font-size: 1.3vh;
+    background: #32CD32;
+    border: none;
+    color: #ffffff;
+    border-radius: 2vh;
+    transition: 0.3s;
+    outline: none;
+}
+
+.reactivate:hover{
     background: #54EF54;
 }
 /* 
@@ -164,7 +213,7 @@ body{
         text-align: center;
     }
     .section{
-        padding: 4vh;
+        padding: 3vh 2vh;
         border-radius: 0;
     }
     #upload, #generate, #download{
@@ -184,6 +233,16 @@ body{
     -webkit-transform: scale(2.5); /* Safari and Chrome */
     -o-transform: scale(2.5); /* Opera */
     transform: scale(2.5);
+    }
+    .filenames{
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        max-width:25vh;
+        display:inline-block;
+    }
+    #downloadables{
+        padding-left: 8vh;
     }
 }
 
@@ -223,7 +282,7 @@ body{
         text-align: center;
     }
     .section{
-        padding: 4vh;
+        padding: 3vh 2vh;
         border-radius: 0;
     }
     #upload, #generate, #download{
@@ -244,5 +303,14 @@ body{
     -o-transform: scale(2.5); /* Opera */
     transform: scale(2.5);
     }
-
+    .filenames{
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        max-width:25vh;
+        display:inline-block;
+    }
+    #downloadables{
+        padding-left: 8vh;
+    }
 }

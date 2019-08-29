@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Peer Evaluation</title>
+        <link rel="stylesheet" type="text/css" href="../css/manager.css">
         <link rel="stylesheet" type="text/css" href="../css/peer.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
@@ -34,25 +35,38 @@
         <div id="content">
             <h1 class="headline">Peer Evaluation</h1>
             <div class="wrapper">
+                <div id="peerLoad" class="section">
+                    <h2 style="color: #124191; font-size: 3vh">Load a Questionnaire for Evaluation</h2><br>
+                    <!--ito lang ung part dapat na kukunin na ung excel file sa database kaso hindi ko pa napag-aralan sorry :( -->
+                    <input style="font-size: 1.5vh" type="file" id="fileUpload" />
+                    <input style="font-size: 1.5vh" type="button" id="upload" value="Load" />
+                    <div id="dvExcel"></div><br>
+                </div>
                 
-                <!--ito lang ung part dapat na kukunin na ung excel file sa database kaso hindi ko pa napag-aralan sorry :( -->
-                <input type="file" id="fileUpload" />
-                <input type="button" id="upload" value="Upload" />
-                <hr />
-                <div id="dvExcel"></div>
+                <div id="peerUpload" class="section" style="padding: 0.3vh 0.3vh; margin-top: -3vh;">
+                    <a href="uploadPeer.html"><h2 style="color: #124191; font-size: 2vh">Upload an Existing Evaluation</h2></a>
+                </div>
 
-                <div id="questionnaire">
+                <div id="questionnaire" style="display: none">
                     <div class="set">
                         <select class="categories">
                         </select>
                         <ol class="evaluation">                            
                         </ol>
                     </div>
-                    <input type="submit" value="Submit" onclick="submit()">
+                    <input type="submit" value="Generate" onclick="submit()">
                 </div>
             </div>
         </div>
         <script>
+            $("#upload").on("click", function(){
+                if(document.getElementById("fileUpload").files.length != 0){
+                    $("#questionnaire").css("display", "block");
+                    $("#peerLoad").css("display", "none");
+                    $("#peerUpload").css("display", "none");
+                }
+            });
+            
             function submit(){
                 var ratings = document.getElementsByClassName("ratings");
                 var comments = document.getElementsByClassName("comments");
@@ -114,9 +128,11 @@
                 }
             });
             
-            $.get("../php/filename.php", function(data, status){
-                  document.location = "../php/questionnaires/"+data;
-            });
+            if(confirm("Download active questionnaire?")){
+                $.get("../php/filename.php", function(data, status){
+                      document.location = "../php/questionnaires/"+data;
+                });
+            }
         </script>
     </body>
 </html>
