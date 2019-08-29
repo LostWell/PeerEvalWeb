@@ -48,6 +48,13 @@
             </div>
         </div>
         <script>
+            if (localStorage.getItem("username") === null || localStorage.getItem("type") != "peer"){
+                window.location.replace("home.html");
+            } else{
+                var username = localStorage.getItem("username");
+                document.querySelector("#account a").textContent = username;
+            }
+            
             document.getElementById("logout").addEventListener("click", function(){
                 var check = confirm("Are you sure you want to log out?");
                 if(check == true){
@@ -71,6 +78,14 @@
                     document.getElementById("account").style.backgroundColor = "#f0f0f0";
                     document.getElementById("account_arrow").src = "../images/up-arrow.png";
                 }
+            });
+            
+            
+            document.getElementById("uploadButton").addEventListener("click", function(){
+                alert("Thank you for submitting your evaluation");
+                localStorage.removeItem("username");
+                localStorage.removeItem("type");
+                window.location.replace("home.html");
             });
         </script>
     </body>
