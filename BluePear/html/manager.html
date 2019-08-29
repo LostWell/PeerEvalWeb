@@ -28,9 +28,9 @@
             <div class="wrapper">
                 <div class="section">
                     <div id="titlebar">
-                        <h2 class="cardTitle">List of Questionnaires</h2>
+                        <h2 class="cardTitle">List of Existing Questionnaires</h2>
                         <span id="toolbar">
-                            <button id="edit" onclick="location.href='edit.html'" style="display:none"><img src="../images/edit-hover.png"/><span>Edit</span></button>
+                            <button id="edit" onclick="location.href='edit.html'" style="display:none!important"><img src="../images/edit-hover.png"/><span>Edit</span></button>
                             <button id="delete" style="display: none"><img src="../images/delete-hover.png"/><span>Delete</span></button>
                             <button id="add" onclick="location.href='create.html'"><img src="../images/plus-hover.png"/><span>Create</span></button>
                         </span>
@@ -38,13 +38,19 @@
                     <div id="list">
                     </div>
                 </div>
-                <br/><br/>
                 
                 <div class="section" id="upload">
                     <form action="../php/uploadManager.php" method="post" enctype="multipart/form-data">
                         <h2 class="cardTitle" style="float:none">Upload a Questionnaire</h2><br/><br/>
                         <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 1.7vh">
                         <input id="uploadButton" type="submit" value="Upload" name="submit">
+                    </form>
+                </div>
+                
+                <div class="section" id="download">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <h2 class="cardTitle" style="float:none">Download Peer Evaluations</h2>
+                        <input id="downloadButton" type="submit" value="Download" name="submit">
                     </form>
                 </div>
                 
@@ -113,6 +119,7 @@
                             },
                             function(data, status){
                                 if(data == "true"){
+                                    reset();
                                     alert("Activation successful");
                                     location.reload();
                                 } else {
@@ -133,11 +140,7 @@
                 for (var i=0; i<checkboxes.length; i++) {
                     var itemChildren = checkboxes[i].children;
                      if (itemChildren[0].checked) {
-                        if(i == checkboxes.length-1){
-                            checked += itemChildren[1].innerText;
-                        } else{
-                            checked += itemChildren[1].innerText+",";
-                        }
+                         checked += itemChildren[1].innerText+",";
                      }
                 }
                 
@@ -155,6 +158,32 @@
                     }
                 );
             }
+            
+            
+            function reset(){
+                $.get("../php/reset.php", function(data, status){
+                    if(data == "true"){
+                        alert("[Success] Deleted previous peer evaluations");
+                    } else {
+                        alert("[Failed] Deletion of previous peer evaluations failed");
+                    }
+                });
+            }
+            
+            $("#downloadButton").click(function(e) {
+                e.preventDefault();
+                $.get("../php/download.php", function(data, status){
+                    console.log(data);
+                    if(data == "false"){
+                        alert("[Error] No peer evaluations have been submitted yet");
+                    } else {
+                        var downloadFiles = data.split(",");
+                        for(var x = 0; x < downloadFiles.length; x++){
+                            document.location = "../php/evaluations/"+downloadFiles[x];
+                        }
+                    }
+                });
+            });
         </script>
     </body>
 </html>
