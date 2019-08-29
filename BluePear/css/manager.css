@@ -96,11 +96,11 @@ body{
     font-size: 1.8vh;
 }
 
-#upload, #generate{
+#upload, #generate, #download{
     text-align: left;
 }
 
-#uploadButton, #generateButton{
+#uploadButton, #generateButton, #downloadButton{
     margin: 5vh auto auto 0vh;
 }
 
@@ -108,6 +108,7 @@ body{
     padding: 4vh;
     background-color: #f0f0f0;
     border-radius: 2vh;
+    margin-bottom: 5vh;
 }
 
 .activate{
@@ -166,10 +167,10 @@ body{
         padding: 4vh;
         border-radius: 0;
     }
-    #upload{
+    #upload, #generate, #download{
         text-align: center;
     }
-    #uploadButton{
+    #uploadButton, #generateButton, #downloadButton{
         margin: 5vh auto;
     }
     #toolbar{
@@ -225,10 +226,10 @@ body{
         padding: 4vh;
         border-radius: 0;
     }
-    #upload{
+    #upload, #generate, #download{
         text-align: center;
     }
-    #uploadButton{
+    #uploadButton, #generateButton, #downloadButton{
         margin: 5vh auto;
     }
     #toolbar{
