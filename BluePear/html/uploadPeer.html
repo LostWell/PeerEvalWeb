@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Peer Evaluation</title>
+        <link rel="stylesheet" type="text/css" href="../css/manager.css">
         <link rel="stylesheet" type="text/css" href="../css/peer.css">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
         <link rel="stylesheet" type="text/css" href="../css/animations.css">
@@ -18,6 +19,9 @@
         <script type="text/javascript" src="../scripts/jquery-3.4.1.js"></script>
 
         <script type="text/javascript" src="../scripts/peer.js"></script>
+        <style>
+            
+        </style>
     </head>
     <body>
         <nav>
@@ -34,64 +38,16 @@
         <div id="content">
             <h1 class="headline">Peer Evaluation</h1>
             <div class="wrapper">
-                
-                <!--ito lang ung part dapat na kukunin na ung excel file sa database kaso hindi ko pa napag-aralan sorry :( -->
-                <input type="file" id="fileUpload" />
-                <input type="button" id="upload" value="Upload" />
-                <hr />
-                <div id="dvExcel"></div>
-
-                <div id="questionnaire">
-                    <div class="set">
-                        <select class="categories">
-                        </select>
-                        <ol class="evaluation">                            
-                        </ol>
-                    </div>
-                    
-                    <select class="categories">
-                    </select>
-                    <input type="submit" value="Submit" onclick="">
+                <div class="section" id="upload">
+                    <form action="../php/uploadPeer.php" method="post" enctype="multipart/form-data">
+                        <h2 class="cardTitle" style="float:none">Upload your Evaluation</h2><br/><br/>
+                        <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 1.7vh">
+                        <input id="uploadButton" type="submit" value="Upload" name="submit">
+                    </form>
                 </div>
             </div>
         </div>
         <script>
-            function submit(){
-                var ratings = document.getElementsByClassName("ratings");
-                var comments = document.getElementsByClassName("comments");
-                var statusRatings = true;
-
-                for(var i=0; i<ratings.length; i++){
-                    var labels = ratings[i].children;
-                    var checker = false;
-                    for(var j=0; j<labels.length; j++){
-                        if (labels[j].firstElementChild.checked == true){
-                            checker = true;
-                            break;
-                        }
-                    }
-                    if (checker == false){
-                        statusRatings = false;
-                        break;
-                    }
-                }
-
-                if (statusRatings == false){
-                    alert("[Error] Some ratings are not provided");
-                } else{
-                    alert("[Success] Please save the excel file and then upload it to the server");
-                    create_answer();
-                    window.location.replace("uploadPeer.html");
-                }
-            }
-            
-            if (localStorage.getItem("username") === null || localStorage.getItem("type") != "peer"){
-                window.location.replace("home.html");
-            } else{
-                var username = localStorage.getItem("username");
-                document.querySelector("#account a").textContent = username;
-            }
-            
             document.getElementById("logout").addEventListener("click", function(){
                 var check = confirm("Are you sure you want to log out?");
                 if(check == true){
@@ -115,10 +71,6 @@
                     document.getElementById("account").style.backgroundColor = "#f0f0f0";
                     document.getElementById("account_arrow").src = "../images/up-arrow.png";
                 }
-            });
-            
-            $.get("../php/filename.php", function(data, status){
-                  document.location = "../php/questionnaires/"+data;
             });
         </script>
     </body>

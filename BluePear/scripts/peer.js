@@ -229,7 +229,7 @@ function create_answer(){
     // 1 3 5 2 4 6
     console.log("Generating Answers...");
 
-    var filename = 'lol';
+    var filename = $("#account a").text();
     var scores = [], comments = [];
     var categories = all_data[0];
     var participants = all_data[all_data[0].length + 2];
