@@ -1,5 +1,6 @@
 // generate summary report
 
+/*
 var participants = ['Lee Seung Gi', 'Jang Man Weol', 'Gu Chan Seong'];
 var rating1 = ['Category: cat1', 'question 11', '1', 'rating1comment11','Category: cat2', 'question 21', '3', 'rating1comment21', 'question 22', '4', 'rating1comment22', 'Category: cat3', 'question 31', '4', 'rating1comment31', 'question 32', '3', 'rating1comment32', 'question 33', '3', 'rating1comment33', 'Category: cat4', 'question 41', '2', 'rating1comment41'];
 
@@ -12,31 +13,106 @@ var manweol =       [rating2, rating2, rating2];
 var chanseong =     [rating2, rating3, rating1];
 
 var answers = [seunggi, manweol, chanseong];
+*/
+
+var answers = [];
+
+$(document).on('click', '#generateButton', function(){
+     //Reference the FileUpload element.
+     var fileUpload = $("#fileUpload")[0].files;
+     console.log(fileUpload.length);
+ 
+     //Validate whether File is valid Excel file.
+     var regex = /^([a-zA-Z0-9\s_\\.\-:()'])+(.xls|.xlsx)$/;
+     for(var i = 0; i < fileUpload.length; i++){
+          if (regex.test(fileUpload[i].value.toLowerCase())) {
+               if (typeof (FileReader) != "undefined") {
+                   var reader = new FileReader();
+                   var sheet_values = [];
+       
+                   //For Browsers other than IE.
+                   if (reader.readAsBinaryString) {
+                       reader.onload = function (e) {
+                           sheet_values = ProcessExcel(e.target.result);
+                       };
+                       reader.readAsBinaryString(fileUpload.files[0]);
+                   } else {
+                       //For IE Browser.
+                       reader.onload = function (e) {
+                           var data = "";
+                           var bytes = new Uint8Array(e.target.result);
+                           for (var i = 0; i < bytes.byteLength; i++) {
+                               data += String.fromCharCode(bytes[i]);
+                           }
+                           sheet_values = ProcessExcel(data);
+                       };
+                       reader.readAsArrayBuffer(fileUpload.files[0]);
+                   }
+                   remove_blank_input(sheet_values);
+                   answers.push(sheet_values);
+               } else {
+                   alert("This browser does not support HTML5.");
+               }
+           } else {
+               alert("Please upload a valid Excel file.");
+           }
+     }
+
+     console.log('Opening of peer evals');
+     console.log(answers);
+/*
+     getCategoriesAndQuestions(answers[0][0], categories, questions);
+     console.log('Categories');
+     console.log(categories);
+
+     console.log('Questions per Category');
+     console.log(questions);
+
+     console.log('Merging ratings per person');
+     rating_per_person = ratingForAPerson(answers);
+     console.log(rating_per_person);
+
+     console.log('Generating mean scores per question');
+     scores = meanScores(rating_per_person, questions);
+     console.log(scores);
+
+     console.log('Merging comments');
+     comments = commentsPerPerson(rating_per_person, questions);
+     console.log(comments);
+
+     generateSummary('lol', categories, questions, comments, scores, participants);
+*/
+ });
+
 var categories = [], questions = [], rating_per_person, scores, comments = [];
 
-console.log('Opening of peer evals');
-console.log(answers);
+// removes blank input in the variable
+function remove_blank_input(variable_name){
+     for(var i = 0; i < variable_name.length; i++){
+          if(variable_name[i] == '')
+               variable_name.splice(i, 1);
+     }
+}
 
-getCategoriesAndQuestions(answers[0][0], categories, questions);
-console.log('Categories');
-console.log(categories);
+function ProcessExcel(data){
 
-console.log('Questions per Category');
-console.log(questions);
+     var data = [];
+    
+     //Read the Excel File data.
+     var workbook = XLSX.read(data,{type: 'binary'});
+     workbook.SheetNames.forEach(function(sheetName){
+         // Here is your object
+         var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+         var values = [];
+         for(var i = 0; i < excelRows.length; i++){
+             var value = JSON.stringify(excelRows[i]).replace(/[^\w\s]/gi, ''); // \W = retain only [^0-9a-zA-Z_]
+             values.push(value);
+         }
+         data.push(values);
+     });
 
-console.log('Merging ratings per person');
-rating_per_person = ratingForAPerson(answers);
-console.log(rating_per_person);
-
-console.log('Generating mean scores per question');
-scores = meanScores(rating_per_person, questions);
-console.log(scores);
-
-console.log('Merging comments');
-comments = commentsPerPerson(rating_per_person, questions);
-console.log(comments);
-
-generateSummary('lol', categories, questions, comments, scores, participants);
+     return data;
+ }
 
 function generateSummary(filename, categories, questions, comments, scores, participants){
      var total_questions = 0;
