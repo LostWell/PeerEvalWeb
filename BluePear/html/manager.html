@@ -48,20 +48,20 @@
                 </div>
                 
                 <div class="section" id="download">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <div>
                         <h2 class="cardTitle" style="float:none">Download Submitted Peer Evaluations</h2>
                         <ol id="downloadables">
                         </ol>
                         <input id="downloadButton" type="submit" value="Download" name="submit">
-                    </form>
+                    </div>
                 </div>
                 
                 <div class="section" id="generate">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <div>
                         <h2 class="cardTitle" style="float:none">Generate Summary Report</h2><br/><br/>
-                        <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 1.7vh" multiple="multiple">
+                        <input type="file" name="fileToUpload" id="fileToGenerate" style="font-size: 1.7vh" multiple="multiple">
                         <input id="generateButton" type="submit" value="Generate" name="submit">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,6 +218,22 @@
                         }
                     }
                 });
+            });
+            
+            
+            document.getElementById("uploadButton").addEventListener("click", function(){
+                if(document.getElementById("fileToUpload").files.length == 0 ){
+                    alert("Please select a valid excel file");
+                }
+            });
+            
+            
+            document.getElementById("generateButton").addEventListener("click", function(){
+                if(document.getElementById("fileToUpload").files.length == 0 ){
+                    alert("Please select a valid excel file/s");
+                } else{
+                    //Genereate summary code;
+                }
             });
         </script>
     </body>
