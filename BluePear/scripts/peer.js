@@ -229,7 +229,7 @@ function create_answer(){
     // 1 3 5 2 4 6
     console.log("Generating Answers...");
 
-    var filename = $("#account a").text();
+    var filename = 'lol';
     var scores = [], comments = [];
     var categories = all_data[0];
     var participants = all_data[all_data[0].length + 2];
@@ -272,18 +272,23 @@ function create_answer(){
     }
     
     for(var i = 0, current_question = 0, participants_left = (participants.length - 1); i < summary_answers.length; i++, participants_left--){
-         for(var j = 0; j < categories.length; j++){
+        //console.log('i = ' + i);
+        current_question = i*(all_data[1].length);
+         for(var j = 0; j < categories.length; j++){   
             summary_answers[i].push('Category: ' + categories[j]);
             var questions = all_data[j + 1];
-
+            console.log('j = '+ j);
             for(var k = 0; k < questions.length; k++, current_question++){
+
                 summary_answers[i].push(questions[k]);
-                //summary_answers[i].push('');
                 summary_answers[i].push('Rating: ' + scores[current_question]);
                 summary_answers[i].push('Comment: ' + comments[current_question]);
+                console.log('current question = ' + current_question);
             }
-            summary_answers[i].push('');
+            
             current_question+=((questions.length*participants_left) + (all_data[j + 2].length*i));
+
+            console.log('-current question = ' + current_question);
          }
     }
 
@@ -292,7 +297,9 @@ function create_answer(){
     }
 
     console.log(summary_answers);
-    summary.generate(filename + '.xlsx');
+
+    if(prompt_final() == true)
+         summary.generate(filename + '.xlsx');
 }
 
 function scoresPerCategory(scores){
