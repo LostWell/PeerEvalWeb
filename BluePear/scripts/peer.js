@@ -271,7 +271,7 @@ function create_answer(){
          summary_answers[i].push('');
     }
     
-    for(var i = 0, current_question = 0; i < summary_answers.length; i++){
+    for(var i = 0, current_question = 0, participants_left = (participants.length - 1); i < summary_answers.length; i++, participants_left--){
          for(var j = 0; j < categories.length; j++){
             summary_answers[i].push('Category: ' + categories[j]);
             var questions = all_data[j + 1];
