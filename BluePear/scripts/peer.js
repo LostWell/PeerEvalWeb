@@ -283,7 +283,7 @@ function create_answer(){
                 summary_answers[i].push('Comment: ' + comments[current_question]);
             }
             summary_answers[i].push('');
-            current_question+=questions.length;
+            current_question+=((questions.length*participants_left) + (all_data[j + 2].length*i));
          }
     }
 
