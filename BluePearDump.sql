@@ -1,55 +1,58 @@
-CREATE DATABASE  IF NOT EXISTS `bluepear` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `bluepear`;
--- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: bluepear
--- ------------------------------------------------------
--- Server version	5.7.26
+-- Host: 127.0.0.1:3306
+-- Generation Time: Aug 30, 2019 at 05:59 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bluepear`
+--
+CREATE DATABASE IF NOT EXISTS `bluepear` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `bluepear`;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `managers`
 --
 
 DROP TABLE IF EXISTS `managers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `managers` (
+CREATE TABLE IF NOT EXISTS `managers` (
   `username` varchar(128) NOT NULL,
   `password` varchar(64) NOT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `managers`
 --
 
-LOCK TABLES `managers` WRITE;
-/*!40000 ALTER TABLE `managers` DISABLE KEYS */;
-INSERT INTO `managers` VALUES ('Tanja','12121212');
-/*!40000 ALTER TABLE `managers` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `managers` (`username`, `password`) VALUES
+('Tanja', 'tanjatanja');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `peers`
 --
 
 DROP TABLE IF EXISTS `peers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `peers` (
+CREATE TABLE IF NOT EXISTS `peers` (
   `username` varchar(128) NOT NULL,
   `password` varchar(64) NOT NULL,
   `savefile` mediumblob,
@@ -57,26 +60,35 @@ CREATE TABLE `peers` (
   PRIMARY KEY (`username`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `peers`
 --
 
-LOCK TABLES `peers` WRITE;
-/*!40000 ALTER TABLE `peers` DISABLE KEYS */;
-INSERT INTO `peers` VALUES ('Louel','12345678',NULL,'not started');
-/*!40000 ALTER TABLE `peers` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `peers` (`username`, `password`, `savefile`, `eval_status`) VALUES
+('alexander.tan', '12345678', NULL, 'not started'),
+('angela.pagkalinawan', '12345678', NULL, 'not started'),
+('erica.sta_cruz', '12345678', NULL, 'not started'),
+('hans.go', '12345678', NULL, 'not started'),
+('james.baylon', '12345678', NULL, 'not started'),
+('jimalene.dela_cruz', '12345678', NULL, 'not started'),
+('joseph.divina', '12345678', NULL, 'not started'),
+('kim.bandeleon', '12345678', NULL, 'not started'),
+('louel.lagasca', 'lmdl.8298', NULL, 'not started'),
+('mikee.ojastro', '12345678', NULL, 'not started'),
+('ral.itong', '12345678', NULL, 'not started'),
+('raphael.orbe', '12345678', NULL, 'not started'),
+('shayne.ulep', '12345678', NULL, 'not started'),
+('xyrus.manongsong', '12345678', NULL, 'not started');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `questionnaires`
 --
 
 DROP TABLE IF EXISTS `questionnaires`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `questionnaires` (
+CREATE TABLE IF NOT EXISTS `questionnaires` (
   `filename` varchar(200) NOT NULL,
   `teams` varchar(10000) NOT NULL,
   `file` mediumblob NOT NULL,
@@ -84,48 +96,22 @@ CREATE TABLE `questionnaires` (
   PRIMARY KEY (`filename`),
   UNIQUE KEY `filename_UNIQUE` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `questionnaires`
---
-
-LOCK TABLES `questionnaires` WRITE;
-/*!40000 ALTER TABLE `questionnaires` DISABLE KEYS */;
-/*!40000 ALTER TABLE `questionnaires` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `teams`
 --
 
 DROP TABLE IF EXISTS `teams`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `teams` (
+CREATE TABLE IF NOT EXISTS `teams` (
   `teamname` varchar(128) NOT NULL,
   `members` varchar(10000) NOT NULL,
   PRIMARY KEY (`teamname`),
   UNIQUE KEY `teamname_UNIQUE` (`teamname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+COMMIT;
 
---
--- Dumping data for table `teams`
---
-
-LOCK TABLES `teams` WRITE;
-/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-08-22 11:30:22
