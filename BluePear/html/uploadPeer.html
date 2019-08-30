@@ -82,10 +82,14 @@
             
             
             document.getElementById("uploadButton").addEventListener("click", function(){
-                alert("Thank you for submitting your evaluation");
-                localStorage.removeItem("username");
-                localStorage.removeItem("type");
-                window.location.replace("home.html");
+                if(document.getElementById("fileToUpload").files.length == 0 ){
+                    alert("Please select a valid excel file");
+                } else{
+                    alert("Thank you for submitting your evaluation");
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("type");
+                    window.location.replace("home.html");
+                }
             });
         </script>
     </body>

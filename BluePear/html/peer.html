@@ -37,7 +37,6 @@
             <div class="wrapper">
                 <div id="peerLoad" class="section">
                     <h2 style="color: #124191; font-size: 3vh">Load a Questionnaire for Evaluation</h2><br>
-                    <!--ito lang ung part dapat na kukunin na ung excel file sa database kaso hindi ko pa napag-aralan sorry :( -->
                     <input style="font-size: 1.5vh" type="file" id="fileUpload" />
                     <input style="font-size: 1.5vh" type="button" id="upload" value="Load" />
                     <div id="dvExcel"></div><br>
@@ -71,6 +70,7 @@
                 var ratings = document.getElementsByClassName("ratings");
                 var comments = document.getElementsByClassName("comments");
                 var statusRatings = true;
+                var statusComments = true;
 
                 for(var i=0; i<ratings.length; i++){
                     var labels = ratings[i].children;
@@ -86,13 +86,27 @@
                         break;
                     }
                 }
-
+                
+                
+                for(var i=0; i<comments.length; i++){
+                    var checker = true;
+                    if (comments[i].value == ''){
+                        checker = false;
+                    }
+                    if (checker == false){
+                        statusComments = false;
+                        break;
+                    }
+                }
+                
                 if (statusRatings == false){
                     alert("[Error] Some ratings are not provided");
+                } else if (statusComments == false){
+                    alert("[Error] Some comments are not provided");
                 } else{
-                    alert("[Success] Please save the excel file and then upload it to the server");
                     create_answer();
-                    window.location.replace("uploadPeer.html");
+                    alert("[Success] Please upload the generated excel file to the server");
+                    window.location.assign("uploadPeer.html");
                 }
             }
             
