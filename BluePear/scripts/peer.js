@@ -292,9 +292,7 @@ function create_answer(){
     }
 
     console.log(summary_answers);
-
-    if(prompt_final() == true)
-         summary.generate(filename + '.xlsx');
+    summary.generate(filename + '.xlsx');
 }
 
 function scoresPerCategory(scores){

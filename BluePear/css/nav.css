@@ -11,6 +11,7 @@ nav{
     box-sizing: border-box;
     top: 0vh;
     box-shadow: 0vh 0.5vh 3vh rgb(0,0,0,0.2);
+    z-index:10;
 }
 
 #logo{
@@ -117,7 +118,6 @@ nav{
         right: 0vh;
         width: 100%;
         background-color: #f0f0f0;
-        box-shadow: none;
     }
     nav{
         padding: 2vh 3vh 2vh 3vh;
@@ -154,7 +154,6 @@ nav{
         right: 0vh;
         width: 100%;
         background-color: #f0f0f0;
-        box-shadow: none;
     }
     nav{
         padding: 2vh 3vh 2vh 3vh;
